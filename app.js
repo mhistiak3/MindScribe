@@ -15,16 +15,22 @@ const express = require("express");
  * custome module
  **/
 const register = require("./src/routes/register");
-
+const { APP_PORT } = require("./config");
 /**
  * Initial Express
  **/
 const app = express();
 
 /**
- *  Middleware
+ *  setting view engine
  **/
 app.set("view engine", "ejs");
+
+/**
+ * setting public directory
+ **/
+app.use(express.static(`${__dirname}/public`));
+
 /**
  * Application Routes
  **/
@@ -33,6 +39,6 @@ app.use("/register", register);
 /**
  * Start Server
  **/
-app.listen(3000, () => {
-  console.log(`Server Start On: http://localhost:3000`);
+app.listen(APP_PORT, () => {
+  console.log(`Server Start On: http://localhost:${APP_PORT}`);
 });
