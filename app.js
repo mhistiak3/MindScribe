@@ -32,6 +32,11 @@ app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
 
 /**
+ * parsing urlencoded data
+ **/
+app.use(express.urlencoded({ extended: true }));
+
+/**
  * Application Routes
  **/
 app.use("/register", register);

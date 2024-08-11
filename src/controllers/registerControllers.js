@@ -13,4 +13,12 @@ const renderRegister = (req, res, next) => {
   res.render("pages/register");
 };
 
-module.exports = { renderRegister };
+/**
+ *   Controller for New User Register 
+ **/
+const userRegister = (req, res, next) => {
+  console.log(req.body);
+  
+};
+
+module.exports = { renderRegister, userRegister };

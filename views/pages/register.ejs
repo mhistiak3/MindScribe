@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("../partials/head.ejs",{title:"Register | MindScribe"}) %>
+  <head>
+    <%- include("../partials/head.ejs",{title:"Register | MindScribe"}) %>
+    <script type="module" src="/js/register.js"></script>
+  </head>
   <body>
     <div class="section form-section">
       <div class="container">
@@ -17,7 +20,7 @@
               Join on MindScribe community
             </p>
           </div>
-          <form action="" class="form" data-form="">
+          <form action="" class="form" data-form>
             <div class="text-field-wrapper">
               <label for="name" class="body-large label"> Full Name </label>
               <input

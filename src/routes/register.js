@@ -14,9 +14,15 @@ const router = express.Router();
 /**
  * custom modules
  **/
-const { renderRegister } = require("../controllers/registerControllers");
+const {
+  renderRegister,
+  userRegister,
+} = require("../controllers/registerControllers");
 
-// * Get Route: Render the registration form
+// * GET Route: Render the registration form
 router.get("/", renderRegister);
+
+// * POST Rout: Register form submission for user register
+router.post("/", userRegister);
 
 module.exports = router;
