@@ -1,0 +1,16 @@
+{
+  "name": "mindscribe",
+  "version": "1.0.0",
+  "description": "MindScribe is a blog application.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs"
+  ],
+  "author": "Istiak",
+  "license": "Apache-2.0"
+}
