@@ -45,4 +45,9 @@ form.addEventListener("submit", async (event) => {
   if (response.ok) {
     return (window.location = response.url);
   }
+  if (response.status === 400) {
+    const { message } = await response.json();
+    console.log(message);
+    
+  }
 });

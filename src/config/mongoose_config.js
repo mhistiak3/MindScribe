@@ -17,6 +17,7 @@ const clientOptions = {
     strict: true,
     deprecationErrors: true,
   },
+  dbName:"MindScribe"
 };
 
 /**
