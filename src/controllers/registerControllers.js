@@ -43,19 +43,19 @@ const userRegister = async (req, res, next) => {
   } catch (error) {
     if (error.code === 11000) {
       if (error.keyPattern.email) {
-        return res.status(400).send({
+        return res.status(400).json({
           message: "This email is already associated with an account.",
         });
       }
       if (error.keyPattern.username) {
-        return res.status(400).send({
+        return res.status(400).json({
           message: "This username is already in use.",
         });
       }
     } else {
       return res
         .status(400)
-        .send({ message: `Failed to register user.<br>${error.message}` });
+        .json({ message: `Failed to register user.<br>${error.message}` });
     }
     console.log("userRegister: ", error.message);
     throw error;
