@@ -10,13 +10,20 @@
  * node modules
  **/
 const express = require("express");
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 /**
  * custome module
  **/
 const register = require("./src/routes/registerRoutes");
 const login = require("./src/routes/loginRoutes");
-const { APP_PORT, MONGO_CONNECTION_URL } = require("./src/config");
+const {
+  APP_PORT,
+  MONGO_CONNECTION_URL,
+  SESSION_SECRET,
+  SESSION_MAX_AGE,
+} = require("./src/config");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 /**
  * Initial Express
@@ -37,6 +44,30 @@ app.use(express.static(`${__dirname}/public`));
  * parsing urlencoded data
  **/
 app.use(express.urlencoded({ extended: true }));
+
+/**
+ * instance for session
+**/
+const store = new MongoStore({
+  mongoUrl: MONGO_CONNECTION_URL,
+  collectionName: "sessions",
+  dbName: "MindScribe",
+});
+
+/**
+ * initial express session
+ **/
+app.use(
+  session({
+    secret: SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store,
+    cookie: {
+      maxAge: Number(SESSION_MAX_AGE),
+    },
+  })
+);
 
 /**
  * Application Routes

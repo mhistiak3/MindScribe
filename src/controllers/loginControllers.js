@@ -40,13 +40,20 @@ const userLogin = async (req, res, next) => {
       currentUser.password
     );
     if (!isValidPassword) {
-      return res
-        .status(400)
-        .json({
-          message:
-            "Invalid password. Please ensure you've enterd the correct password and try again.",
-        });
+      return res.status(400).json({
+        message:
+          "Invalid password. Please ensure you've enterd the correct password and try again.",
+      });
     }
+
+    // set session userAuthenticated to tru and redirect to home page
+    req.session.user = {
+      userAuthenticated: true,
+      name: currentUser.name,
+      username: currentUser.username,
+      profilePhotoURL: currentUser.profilePhoto?.url,
+    };
+    return res.redirect("/");
   } catch (error) {
     console.log("userLogin:", error.message);
     throw error;
