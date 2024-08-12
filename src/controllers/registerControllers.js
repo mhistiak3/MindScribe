@@ -20,6 +20,12 @@ const generateUsername = require("../utilities/generateUsernameUtil");
  *   Controller for Render the registration page
  **/
 const renderRegister = (req, res, next) => {
+  const { userAuthenticated } = req.session.user || {};
+
+  // handle case where user alredy logged in
+  if (userAuthenticated) {
+    return res.redirect("/");
+  }
   res.render("pages/register");
 };
 

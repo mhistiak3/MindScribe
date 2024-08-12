@@ -18,6 +18,7 @@ const MongoStore = require("connect-mongo");
  **/
 const register = require("./src/routes/registerRoutes");
 const login = require("./src/routes/loginRoutes");
+const home = require("./src/routes/homeRoutes");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -74,6 +75,7 @@ app.use(
  **/
 app.use("/register", register);
 app.use("/login", login);
+app.use("/", home);
 
 /**
  * Start Server

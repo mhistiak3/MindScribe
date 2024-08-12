@@ -18,6 +18,12 @@ const User = require("../models/UserModel");
 
 // * Render Login Page
 const renderLogin = (req, res, next) => {
+  const { userAuthenticated } = req.session.user || {};
+  
+  // handle case where user alredy logged in
+  if (userAuthenticated) {
+    return res.redirect("/");
+  }
   res.render("./pages/login");
 };
 
