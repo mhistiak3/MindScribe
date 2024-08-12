@@ -609,6 +609,43 @@ button {
   user-select: none;
 }
 
+/* 
+ * Snackbar
+*/
+
+.snackbar-wrapper {
+  position: fixed;
+  left: var(--space-4);
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 4;
+}
+.snackbar {
+  background-color: var(--inverse-surface);
+  color: var(--inverse-on-surface);
+  min-height: 48px;
+  max-height: max-content;
+  max-width: 60ch;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-extra-small);
+  box-shadow: var(--shadow-3);
+  padding: var(--space-3) var(--space-4);
+  animation: snackbar-show var(--tr-duration-medium-4) var(--tr-easing-standard-decelerate) forwards;
+}
+
+@keyframes snackbar-show{
+  0%{opacity: 0;}
+  50%{opacity: 1;}
+}
+.snackbar.error{
+  background-color: var(--error);
+  color: var(--on-error);
+}
+
+
+
 /*-----------------------------------*\
   * REGISTER & LOGIN PAGE
 \*-----------------------------------*/
