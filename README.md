@@ -2,6 +2,11 @@
 
 MindScribe is a dynamic blog application where users can log in to create and share their thoughts through blogs. Built with Node.js, Express.js, MongoDB, and EJS, the platform allows anyone to read blogs without needing to log in. Cloudinary is integrated to manage and optimize image uploads seamlessly.
 
+![MindScribe](https://i.ibb.co/my624wD/Screenshot-2024-08-12-at-17-04-15-Register-Mind-Scribe.png)
+
+
+
+
 ## Features
 
 - **User Authentication:** Users can sign up, log in, and manage their accounts.
