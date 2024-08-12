@@ -15,7 +15,8 @@ const express = require("express");
  * custome module
  **/
 const register = require("./src/routes/register");
-const { APP_PORT } = require("./config");
+const { APP_PORT, MONGO_CONNECTION_URL } = require("./src/config");
+const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 /**
  * Initial Express
  **/
@@ -44,6 +45,9 @@ app.use("/register", register);
 /**
  * Start Server
  **/
-app.listen(APP_PORT, () => {
+const server = app.listen(APP_PORT, async () => {
   console.log(`Server Start On: http://localhost:${APP_PORT}`);
+  await connectDB(MONGO_CONNECTION_URL);
 });
+
+server.on("close", async () => await disconnectDB());
