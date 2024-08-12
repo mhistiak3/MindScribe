@@ -8,10 +8,9 @@
 
 const renderHome = async (req, res, next) => {
   try {
-    const { userAuthenticated } = req.session.user || {};
-
-    
-    res.render("./pages/home");
+    res.render("./pages/home", {
+      sessionUser: req.session.user,
+    });
   } catch (error) {
     console.log(error.message);
   }

@@ -507,6 +507,21 @@ button {
   opacity: 0.1;
 }
 
+span.material-symbols-rounded {
+  display: block;
+  height: 1em;
+  width: 1em;
+  overflow: hidden;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+:has(> .truncate-oneline) {
+  min-width: 0;
+}
+.truncate-oneline {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /*-----------------------------------*\
   * COMPONENTS
 \*-----------------------------------*/
@@ -608,11 +623,24 @@ button {
   pointer-events: none;
   user-select: none;
 }
+.btn-text {
+  padding-inline: var(--space-3);
+  color: var(--primary);
+  --state-layer-bg: var(--primary);
+}
+.btn :where(.leading-icon, .trailing-icon) {
+  font-size: 18px;
+}
+.btn:has(> .leading-icon) {
+  padding-inline-start: var(--space-4);
+}
+.btn:has(> .trailing-icon) {
+  padding-inline-end: var(--space-4);
+}
 
 /* 
  * Snackbar
 */
-
 .snackbar-wrapper {
   position: fixed;
   left: var(--space-4);
@@ -632,19 +660,193 @@ button {
   border-radius: var(--radius-extra-small);
   box-shadow: var(--shadow-3);
   padding: var(--space-3) var(--space-4);
-  animation: snackbar-show var(--tr-duration-medium-4) var(--tr-easing-standard-decelerate) forwards;
+  animation: snackbar-show var(--tr-duration-medium-4)
+    var(--tr-easing-standard-decelerate) forwards;
 }
 
-@keyframes snackbar-show{
-  0%{opacity: 0;}
-  50%{opacity: 1;}
+@keyframes snackbar-show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
-.snackbar.error{
+.snackbar.error {
   background-color: var(--error);
   color: var(--on-error);
 }
 
+/** 
+ * Avatar
+*/
+.avatar {
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  display: grid;
+  place-items: center;
+  background-color: var(--tertiary);
+  color: var(--on-tertiary);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  overflow: hidden;
+}
 
+/** 
+ * Top App Bar
+*/
+.top-app-bar {
+  background-color: var(--surface);
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: var(--top-app-bar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: var(--space-4);
+  translate: 0 0;
+  border-block-end: 1px solid var(--outline-variant);
+  transition: var(--tr-duration-short-2) var(--tr-easing-linear);
+  transition-property: background-color, translate, border-color;
+  z-index: 4;
+}
+.top-app-bar.hide {
+  translate: 0 -100%;
+}
+.top-app-bar.active {
+  background-color: var(--surface-container);
+  box-shadow: var(--shadow-2);
+  border-color: var(--surface-container);
+}
+.top-app-bar .trailing-action-wrapper {
+  display: flex;
+  gap: var(--space-4);
+  margin-inline-start: var(--space-6);
+}
+
+/** 
+ *  Menu
+*/
+.menu-wrapper {
+  position: relative;
+}
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 180px;
+  max-width: 280px;
+  background-color: var(--surface-container);
+  padding-block: var(--space-2);
+  border-radius: var(--radius-extra-small);
+  box-shadow: var(--shadow-2);
+  transform-origin: top right;
+  scale: 0.8;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--tr-duration-short-3) var(--tr-easing-emphasized-accelerate);
+  transition-property: scale, opacity;
+  will-change: scale, opacity;
+}
+.menu.active {
+  scale: 1;
+  opacity: 1;
+  visibility: visible;
+  transition: var(--tr-duration-medium-3) var(--tr-easing-emphasized-decelerate);
+}
+.menu-item {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-inline: var(--space-3);
+  color: var(--on-surface);
+  --state-layer-bg: var(--on-surface);
+}
+.menu-item .icon {
+  color: var(--on-surface-variant);
+}
+
+/** 
+ *  List Item
+*/
+.list-item {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  --state-layer-bg: var(--on-surface);
+}
+.list-item.small {
+  align-items: center;
+  padding-block: var(--space-2);
+}
+.list-item .list-item-link {
+  position: absolute;
+  inset: 0;
+}
+
+/** 
+ *  Divider
+*/
+.divider {
+  height: 1px;
+  background-color: var(--surface-variant);
+  margin-block: var(--space-2);
+}
+
+/** 
+ *  Icon Button
+*/
+.icon-btn {
+  height: 40px;
+  width: 40px;
+  min-width: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  --state-layer-bg: var(--on-surface);
+}
+
+/** 
+ *  Progress bar
+*/
+.progress-bar {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: var(--tr-duration-short-2) var(--tr-easing-emphasized-decelerate);
+  z-index: 1;
+}
+.progress-bar.loading {
+  transform: scaleY(1);
+}
+.progress-bar.loading-end {
+  transition-delay: var(--tr-duration-short-3);
+  transform: scaleY(0);
+}
+.progress-active-indicator {
+  height: inherit;
+  transform: scaleX(0);
+  transform-origin: left;
+  background-color: var(--primary);
+}
+.progress-bar.loading .progress-active-indicator {
+  transform: scaleX(0.9);
+  transition: transform 2s var(--tr-easing-emphasized-decelerate)
+    var(--tr-duration-short-2);
+}
+.progress-bar.loading-end .progress-active-indicator {
+  transform: scaleX(1);
+  transition: transform var(--tr-duration-short-2)
+    var(--tr-easing-emphasized-accelerate);
+}
 
 /*-----------------------------------*\
   * REGISTER & LOGIN PAGE
