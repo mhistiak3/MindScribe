@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head.ejs",{title:"Login | MindScribe"}) %>
+<script type="module" src="/js/login.js"></script>
+  </head>
+  <body>
+    <div class="section form-section">
+      <div class="container">
+        <div class="form-card">
+          <div class="card-header">
+            <a href="/" class="logo"
+              ><img
+                src="./images/logo-light.svg"
+                alt="MindScribe"
+                class="light" />
+              <img src="./images/logo-dark.svg" alt="MindScribe" class="dark"
+            /></a>
+            <p class="body-large text-on-surface-variant">
+              Join on MindScribe community
+            </p>
+          </div>
+          <form action="" class="form" data-form>
+         
+            <div class="text-field-wrapper">
+              <label for="email" class="body-large label"> Email </label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autocomplete="email"
+                autofocus
+                placeholder=" "
+                required
+                class="body-large text-field"
+              />
+            </div>
+            <div class="text-field-wrapper">
+              <label for="password" class="body-large label"> Password </label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autocomplete="password"
+                minlength="8"
+                autofocus
+                placeholder=" "
+                required
+                class="body-large text-field"
+              />
+            </div>
+       
+            <button type="submit" class="btn btn-fill" data-submit-btn>
+              <p class="label-large">Sign In</p>
+              <div class="state-layer"></div>
+            </button>
+          </form>
+          <div class="card-footer">
+            <p class="label-large">New to MindScribe?</p>
+            <a href="/register" class="label-large text-primary">Create account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="snackbar-wrapper" data-snackbar-wrapper>
+      
+    </div>
+  </body>
+</html>

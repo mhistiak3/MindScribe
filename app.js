@@ -14,7 +14,8 @@ const express = require("express");
 /**
  * custome module
  **/
-const register = require("./src/routes/register");
+const register = require("./src/routes/registerRoutes");
+const login = require("./src/routes/loginRoutes");
 const { APP_PORT, MONGO_CONNECTION_URL } = require("./src/config");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 /**
@@ -41,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
  * Application Routes
  **/
 app.use("/register", register);
+app.use("/login", login);
 
 /**
  * Start Server
