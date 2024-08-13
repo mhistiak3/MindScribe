@@ -48,10 +48,15 @@ app.use(express.static(`${__dirname}/public`));
 app.use(express.urlencoded({ extended: true }));
 
 /**
+ * parsing json data
+ **/
+app.use(express.json({ limit: "10mb" }));
+
+/**
  * instance for session
-**/
+ **/
 const store = new MongoStore({
-  mongoUrl: MONGO_CONNECTION_URL,         
+  mongoUrl: MONGO_CONNECTION_URL,
   collectionName: "sessions",
   dbName: "MindScribe",
 });
@@ -61,8 +66,8 @@ const store = new MongoStore({
  **/
 app.use(
   session({
-    secret: SESSION_SECRET,                       
-    resave: false,                                    
+    secret: SESSION_SECRET,
+    resave: false,
     saveUninitialized: false,
     store,
     cookie: {

@@ -15,9 +15,15 @@ const router = express.Router();
 /**
  * custom modules
  **/
-const { renderCreateBlog } = require("../controllers/createBlogControllers");
+const {
+  renderCreateBlog,
+  postCreateBlog,
+} = require("../controllers/createBlogControllers");
 
 // * GET Route: Render Create Blog Page
 router.get("/", renderCreateBlog);
+
+// *  POST Route: Create new blog post
+router.post("/", postCreateBlog);
 
 module.exports = router;
