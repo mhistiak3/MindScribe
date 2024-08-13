@@ -33,3 +33,13 @@ menuWrappers?.forEach((menuWrapper) => {
     menu.classList.toggle("active");
   });
 });
+
+/**
+ *  Backward button functionality
+ **/
+const backBtn = document.querySelector("[data-back-btn]");
+function handleBackward() {
+  window.history.back();
+}
+
+backBtn?.addEventListener("click", handleBackward);

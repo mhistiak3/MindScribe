@@ -731,6 +731,10 @@ span.material-symbols-rounded {
   gap: var(--space-4);
   margin-inline-start: var(--space-6);
 }
+.top-app-bar:has(> .icon-btn) .logo{
+  margin-inline-end: auto;
+  margin-inline-start: var(--space-4);
+}
 
 /** 
  *  Menu
@@ -813,6 +817,11 @@ span.material-symbols-rounded {
   place-items: center;
   border-radius: var(--radius-full);
   --state-layer-bg: var(--on-surface);
+}
+.icon-btn.filled-tonal{
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface-variant);
+  --state-layer-bg: var(--on-surface-variant);
 }
 
 /** 

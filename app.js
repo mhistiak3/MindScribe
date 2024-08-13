@@ -19,6 +19,7 @@ const MongoStore = require("connect-mongo");
 const register = require("./src/routes/registerRoutes");
 const login = require("./src/routes/loginRoutes");
 const home = require("./src/routes/homeRoutes");
+const createBlog = require("./src/routes/createBlogRoutes");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -50,7 +51,7 @@ app.use(express.urlencoded({ extended: true }));
  * instance for session
 **/
 const store = new MongoStore({
-  mongoUrl: MONGO_CONNECTION_URL,
+  mongoUrl: MONGO_CONNECTION_URL,         
   collectionName: "sessions",
   dbName: "MindScribe",
 });
@@ -60,8 +61,8 @@ const store = new MongoStore({
  **/
 app.use(
   session({
-    secret: SESSION_SECRET,
-    resave: false,
+    secret: SESSION_SECRET,                       
+    resave: false,                                    
     saveUninitialized: false,
     store,
     cookie: {
@@ -76,6 +77,7 @@ app.use(
 app.use("/register", register);
 app.use("/login", login);
 app.use("/", home);
+app.use("/createblog", createBlog);
 
 /**
  * Start Server

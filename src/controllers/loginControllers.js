@@ -52,7 +52,7 @@ const userLogin = async (req, res, next) => {
       });
     }
 
-    // set session userAuthenticated to tru and redirect to home page
+    // set session userAuthenticated to true and redirect to home page
     req.session.user = {
       userAuthenticated: true,
       name: currentUser.name,

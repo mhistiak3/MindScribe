@@ -1,20 +1,20 @@
 /*
  * Title: MindScribe Application.
- * Description: Home Page Controllers
+ * Description: Create Blog Controllers
  * Author: Istiak Ahammad
  * Date: 8/13/2024
  *
  */
 
-const renderHome = async (req, res, next) => {
+const renderCreateBlog = async (req, res, next) => {
   try {
-    res.render("./pages/home", {
+    res.render("./pages/createBlog", {
       sessionUser: req.session.user,
-      route: req.originalUrl,
+      route:req.originalUrl
     });
   } catch (error) {
     console.log(error.message);
   }
 };
 
-module.exports = { renderHome };
+module.exports = { renderCreateBlog };
