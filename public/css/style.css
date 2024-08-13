@@ -593,6 +593,11 @@ span.material-symbols-rounded {
 .text-field-wrapper.error:hover .text-field {
   caret-color: var(--on-error-container);
 }
+.main{
+  padding-block-start: var(--top-app-bar-height);
+  min-height: calc(100vh - var(--footer-height));
+  min-height: calc(100dvh - var(--footer-height));
+}
 
 /* 
  * Common button
@@ -885,10 +890,23 @@ span.material-symbols-rounded {
 }
 .form-card .btn {
   max-width: 100%;
+} 
+/*-----------------------------------*\
+  *  FOOTER
+\*-----------------------------------*/
+.footer{
+  height: var(--footer-height);
+  padding-block: var(--space-5);
+  text-align: center;
+  color: var(--on-surface-variant);
+  border-block-start: 1px solid var(--outline-variant);
+}
+.footer .container{
+  opacity: 0.8;
 }
 
 /*-----------------------------------*\
-  * responsive for learger device
+  * RESPONSIVE for learger device
 \*-----------------------------------*/
 
 @media (min-width: 768px) {
