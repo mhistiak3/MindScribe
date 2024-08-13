@@ -43,3 +43,18 @@ function handleBackward() {
 }
 
 backBtn?.addEventListener("click", handleBackward);
+
+/**
+ *  Auto height textarea in blog create form
+ **/
+const autoHeightTextarea = document.querySelector(
+  "[ data-textarea-auto-height]"
+);
+function textAreaAutoHeight() {
+  this.style.height = this.scrollHeight + "px"
+  this.style.maxHeight = this.scrollHeight + "px"
+}
+autoHeightTextarea?.addEventListener("input", textAreaAutoHeight);
+
+// set initial textarea height
+autoHeightTextarea && textAreaAutoHeight.call(autoHeightTextarea);
