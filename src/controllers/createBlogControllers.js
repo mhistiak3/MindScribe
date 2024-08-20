@@ -6,7 +6,17 @@
  *
  */
 
-const renderCreateBlog = async (req, res, next) => {
+/**
+ *  node modules
+ **/
+const crypto = require("crypto");
+
+/**
+ *  custom modules
+ **/
+const uploadToCloudinary = require("../config/cloudinary_config");
+
+const renderCreateBlog = async (req, res) => {
   try {
     res.render("./pages/createBlog", {
       sessionUser: req.session.user,
@@ -14,14 +24,21 @@ const renderCreateBlog = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error.message);
+    throw error;
   }
 };
 
 const postCreateBlog = async (req, res, next) => {
   try {
-    console.log(req.body);
+    const { banner, title, content } = req.body;
+    // Upload blog banner to Clodinary
+    const publioc_id = crypto.randomBytes(10).toString("hex")
+    const bannerURL = await uploadToCloudinary(banner, publioc_id);
+    console.log(bannerURL);
+    
   } catch (error) {
-    console.log(error.message);
+    console.log("error to create blog" + error.message);
+    throw error;
   }
 };
 
