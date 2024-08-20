@@ -34,9 +34,9 @@ imagePreviewClear.addEventListener("click", clearImagePreview);
 /**
  *  Handle Blog Published
  **/
-
 const form = document.querySelector("[data-form]");
 const publisheBtn = document.querySelector("[data-publish-btn]");
+const progressBar = document.querySelector("[data-progress-bar]");
 async function handlePublishBlog(event) {
   event.preventDefault();
   publisheBtn.setAttribute("disabled", "");
@@ -53,6 +53,9 @@ async function handlePublishBlog(event) {
       formData.set("banner", await imageAsDataURL(formData.get("banner")));
 
       const body = JSON.stringify(Object.fromEntries(formData.entries()));
+      // Show progressBar loading
+      progressBar.classList.add("loading");
+
       const response = await fetch(`${window.location.origin}/createblog`, {
         method: "POST",
         headers: {
@@ -60,6 +63,24 @@ async function handlePublishBlog(event) {
         },
         body,
       });
+
+      // handle case where response is ok
+      if (response.ok) {
+        console.log('c');
+        
+        Snackbar({ message: "Your blog has been creted." });
+        // Show progressBar loading-end
+        progressBar.classList.add("loading-end");
+        // redirect to creted blog page
+        return (window.location = response.url);
+      }
+      if (response.status === 400) {
+        publisheBtn.removeAttribute("disabled");
+        progressBar.classList.add("loading-end");
+        const { message } = await response.json();
+        Snackbar({type:"error", message });
+
+      }
     } else {
       // Enable publish button and show error message
       publisheBtn.removeAttribute("disabled");
