@@ -1026,4 +1026,12 @@ span.material-symbols-rounded {
   .form-card .form {
     margin-block: var(--space-6);
   }
+  
+/*-----------------------------------*\
+  *  CREATE BLOG
+\*-----------------------------------*/
+  .create-blog-page{
+    margin: auto;
+    max-width: 90vw;
+  }
 }
