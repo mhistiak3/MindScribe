@@ -8,14 +8,27 @@
     <!-- 
      * TOP APP BAR
     -->
-     <%- include("../partials/topAppBar") %>
+    <%- include("../partials/topAppBar") %>
 
-     
-    <div class="main"></div>
+    <div class="main">
+      <article class="page home-page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">Latest blogs</h2>
 
-      <!-- 
+          <div class="blog-list">
+            <% if(latestBlog.length > 0) {%>
+              <% latestBlog.forEach(blog=>{  %>
+                 <%- include("../partials/card",{blog}) %>
+              <% }) %>
+            <% } %>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- 
        * Footer
       -->
-      <%- include("../partials/footer") %>
+    <%- include("../partials/footer") %>
   </body>
 </html>
