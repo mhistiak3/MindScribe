@@ -19,6 +19,7 @@ const MongoStore = require("connect-mongo");
  **/
 const register = require("./src/routes/registerRoutes");
 const login = require("./src/routes/loginRoutes");
+const logout = require("./src/routes/logoutRoute");
 const home = require("./src/routes/homeRoutes");
 const createBlog = require("./src/routes/createBlogRoutes");
 const {
@@ -82,6 +83,7 @@ app.use(
  **/
 app.use("/register", register);
 app.use("/login", login);
+app.use("/logout", logout);
 app.use("/", home);
 app.use("/createblog", createBlog);
 

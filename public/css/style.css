@@ -941,7 +941,7 @@ span.material-symbols-rounded {
 .card-meta .trailing-text {
   margin-inline-start: auto;
 }
-.card-footer {
+.card  .card-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
