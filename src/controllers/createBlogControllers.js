@@ -61,7 +61,8 @@ const postCreateBlog = async (req, res, next) => {
     await user.save();
     
     // redirect to the newly created blogpost page
-    res.redirect(`blogs/${newBlog._id}`)
+    // res.redirect(`/blogs/${newBlog._id}`);
+    res.redirect(`/`)
     
   } catch (error) {
     console.log("error to create blog" + error.message);

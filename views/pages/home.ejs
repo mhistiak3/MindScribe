@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <%- include("../partials/head",{title:"Home | MindScribe"}) %>
-    <script src="./js/script.js" defer></script>
+    <script src="/js/script.js" defer></script>
   </head>
   <body>
     <!-- 
@@ -13,15 +13,20 @@
     <div class="main">
       <article class="page home-page">
         <div class="container">
-          <h2 class="headline-small page-title text-on-surface">Latest blogs</h2>
+          <h2 class="headline-small page-title text-on-surface">
+            Latest blogs
+          </h2>
 
+          <!-- All BlogPost Render Here -->
           <div class="blog-list">
-            <% if(latestBlog.length > 0) {%>
-              <% latestBlog.forEach(blog=>{  %>
-                 <%- include("../partials/card",{blog}) %>
-              <% }) %>
-            <% } %>
+            <% if(latestBlog.length > 0) {%> <% latestBlog.forEach(blog=>{ %>
+            <%- include("../partials/card",{blog}) %> <% }) %> <% } %>
           </div>
+
+          <!-- Pagination Show Here -->
+          <% if(pagination.next || pagination.prev) { %>
+           <%- include("../partials/pagination") %>
+             <% }%>
         </div>
       </article>
     </div>
