@@ -29,6 +29,7 @@ const {
   SESSION_MAX_AGE,
 } = require("./src/config");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
+const userAuth = require("./src/middlewares/userAuthMiddleware");
 /**
  * Initial Express
  **/
@@ -79,13 +80,19 @@ app.use(
 );
 
 /**
- * Application Routes
+ * Application Public Routes
  **/
 app.use("/register", register);
 app.use("/login", login);
-app.use("/logout", logout);
 app.use("/", home);
+
+/**
+ * Application Authorization Routes
+ **/
+app.use(userAuth);
 app.use("/createblog", createBlog);
+app.use("/logout", logout);
+
 
 /**
  * Start Server
