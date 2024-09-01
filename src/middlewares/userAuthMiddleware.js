@@ -7,7 +7,7 @@
  */
 
 const userAuth = (req, res, next) => {
-  const { userAuthenticated } = res.session?.user || {};
+  const { userAuthenticated } = req.session?.user || {};
   
 //   Handle case where user is authenticated
   if (userAuthenticated) return next();
