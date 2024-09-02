@@ -21,6 +21,7 @@ const login = require("./src/routes/loginRoutes");
 const logout = require("./src/routes/logoutRoute");
 const home = require("./src/routes/homeRoutes");
 const createBlog = require("./src/routes/createBlogRoutes");
+const blogDetail = require("./src/routes/blogDetailRoutes");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -84,6 +85,7 @@ app.use(
 app.use("/register", register);
 app.use("/login", login);
 app.use("/", home);
+app.use("/blogs", blogDetail);
 
 /**
  * Application Authorization Routes
@@ -91,7 +93,6 @@ app.use("/", home);
 app.use(userAuth);
 app.use("/createblog", createBlog);
 app.use("/logout", logout);
-
 
 /**
  * Start Server
