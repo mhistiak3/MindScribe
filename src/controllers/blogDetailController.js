@@ -41,7 +41,7 @@ const renderBlogDetail = async (req, res, next) => {
     });
 
     // Retrive more blog from this user
-    const ownerBlog = await Blog.find({ owner: { _id: blog.owner._id } })
+    const ownerBlogs = await Blog.find({ owner: { _id: blog.owner._id } })
       .select("title reaction totalBookmark owner readingTime createdAt")
       .populate({
         path: "owner",
@@ -52,12 +52,11 @@ const renderBlogDetail = async (req, res, next) => {
       .sort({ createAt: "desc" })
       .limit(3);
 
-
     res.render("./pages/blogDetail", {
       sessionUser: req.session?.user,
       route: req.originalUrl,
       blog,
-      ownerBlog,
+      ownerBlogs,
     });
   } catch (error) {
     console.log("Error Rendering blog details: ", error.message);

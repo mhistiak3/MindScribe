@@ -480,11 +480,14 @@ button {
 .text-on-surface {
   color: var(--on-surface);
 }
-.text-primary {
+.text-primary, .text-link {
   color: var(--primary);
 }
 .icon-small {
   font-size: 18px;
+}
+.text-link:hover{
+  text-decoration: underline;
 }
 
 /*-----------------------------------*\
@@ -568,7 +571,7 @@ span.material-symbols-rounded {
 }
 .blog-list {
   display: grid;
-  grid-template-columns: minmax(0,1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
 }
 
@@ -941,7 +944,7 @@ span.material-symbols-rounded {
 .card-meta .trailing-text {
   margin-inline-start: auto;
 }
-.card  .card-footer {
+.card .card-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -964,7 +967,7 @@ span.material-symbols-rounded {
 /* 
  *  Pagination
 */
-.pagination{
+.pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1067,6 +1070,84 @@ span.material-symbols-rounded {
 }
 
 /*-----------------------------------*\
+  *  BLOG DETAIL PAGE
+\*-----------------------------------*/
+.blog-detail-page {
+  padding-block-start: 0;
+}
+.blog-detail-page .container {
+  padding-inline: 0;
+}
+.blog-detail {
+  position: relative;
+}
+.blog-author {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  padding-inline: var(--space-4);
+  padding-block: var(--space-7) var(--space-6);
+}
+.blog-author .leading-text {
+  margin-inline-end: auto;
+}
+.blog-content,
+.more-blog {
+  padding-inline: var(--space-4);
+}
+.blog-content,
+.blog-content .title {
+  margin-block-end: var(--space-6);
+}
+.blog-actions {
+  position: sticky;
+  bottom: var(--space-4);
+  max-width: max-content;
+  margin-inline: auto;
+  display: flex;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
+  background-color: var(--surface-container);
+  padding-inline: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--outline-variant);
+  z-index: 4;
+}
+.blog-actions .action-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.blog-actions .action-item span {
+  display: inline;
+}
+.more-blog {
+  margin-block-start: var(--space-6);
+}
+.more-blog .title {
+  margin-block-end: var(--space-3);
+}
+.more-blog .blog-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-inline: -16px;
+  padding-inline: var(--space-4);
+  gap: var(--space-3);
+  scroll-snap-type: inline mandatory;
+  overflow-x: auto;
+}
+.more-blog .blog-list::-webkit-scrollbar {
+  display: none;
+}
+.more-blog .card {
+  min-width: 280px;
+  width: 100%;
+}
+
+/*-----------------------------------*\
   *  RESPONSIVE for learger device
 \*-----------------------------------*/
 
@@ -1101,8 +1182,8 @@ span.material-symbols-rounded {
   /*-----------------------------------*\
   *  CREATE BLOG
 \*-----------------------------------*/
-  .create-blog-page {
+  /* .create-blog-page {
     margin: auto;
     max-width: 90vw;
-  }
+  } */
 }

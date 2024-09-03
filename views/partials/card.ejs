@@ -1,5 +1,5 @@
 <% const {_id:blogId, banner: {url: BannerURL}, title, owner:{name,username},
-reaction, readingTime, totalBookmark, createdAt } = blog /* * Compress
+reaction, readingTime, totalBookmark, createdAt } = blog; /* * Compress
 bannerusing cloudinary Transformation URL API */ const compressedBannerURL =
 BannerURL?.replace("upload/","upload/w_360,h_155,c_auto/q_auto/f_auto/") %>
 
@@ -22,13 +22,13 @@ BannerURL?.replace("upload/","upload/w_360,h_155,c_auto/q_auto/f_auto/") %>
       </div>
       <div>
         <p class="label-large text-on-surface"><%= name %></p>
-        <p class="body-small text-on-surface-varient">
+        <p class="body-small text-on-surface-variant">
           <%= new
           Date(createdAt).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})
           %>
         </p>
       </div>
-      <p class="label-small text-on-surface-varient trailing-text">
+      <p class="label-small text-on-surface-variant trailing-text">
         <%= readingTime %> min read
       </p>
     </div>
@@ -37,19 +37,19 @@ BannerURL?.replace("upload/","upload/w_360,h_155,c_auto/q_auto/f_auto/") %>
   </div>
   <div class="card-footer">
     <div class="wrapper">
-      <span class="icon-small material-symbols-rounded text-on-surface-varient"
+      <span class="icon-small material-symbols-rounded text-on-surface-variant"
         >favorite</span
       >
-      <p class="body-medium text-on-surface-varient">
+      <p class="body-medium text-on-surface-variant">
         <%= reaction %> Reactions
       </p>
     </div>
 
     <div class="wrapper">
-      <span class="icon-small material-symbols-rounded text-on-surface-varient"
+      <span class="icon-small material-symbols-rounded text-on-surface-variant"
         >bookmark</span
       >
-      <p class="body-medium text-on-surface-varient">
+      <p class="body-medium text-on-surface-variant">
         <%= totalBookmark %> Bookmark
       </p>
     </div>
