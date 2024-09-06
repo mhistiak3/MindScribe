@@ -19,6 +19,10 @@ const {
   updateReaction,
   removeReaction,
 } = require("../controllers/reactionController");
+const {
+  updateReadingList,
+  removeReadingList,
+} = require("../controllers/readingListController");
 
 
 // * GET Route: Render the blog details
@@ -29,5 +33,12 @@ router.put("/:blogId/reactions", updateReaction);
 
 // * DELETE Route: Remove blog reactions
 router.delete("/:blogId/reactions", removeReaction);
+
+// * PUT Route: Update blog Reading List
+router.put("/:blogId/readingList", updateReadingList);
+
+// * DELETE Route: Remove from blog Reading List
+router.delete("/:blogId/readingList", removeReadingList);
+
 
 module.exports = router;

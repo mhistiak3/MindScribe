@@ -37,6 +37,7 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
     <!-- Custome Js -->
     <script src="/js/script.js" defer></script>
     <script src="/js/reaction.js" defer></script>
+    <script src="/js/readingList.js" defer></script>
   </head>
   <body>
     <!-- 
@@ -118,10 +119,8 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
               </div>
 
               <div class="action-item">
-                <button class="icon-btn filled-tonal" data-reading-list-btn>
-                  <span class="material-symbols-rounded icon" aria-hidden="true"
-                    >bookmark</span
-                  >
+                <button class="icon-btn filled-tonal <%= userReadingListedBlogs?.includes(currentBlogId) ? "active":"" %>" data-reading-list-btn>
+                  <span class="material-symbols-rounded icon" aria-hidden="true">bookmark </span>
                   <div class="state-layer"></div>
                 </button>
                 <p class="label-large text-on-surface-variant">
