@@ -11,6 +11,7 @@
  **/
 const mongoose = require("mongoose");
 const Blog = require("../models/blogModel");
+const markdown = require("../config/markdown_it_config");
 
 /**
  *  custom modules
@@ -57,6 +58,7 @@ const renderBlogDetail = async (req, res, next) => {
       route: req.originalUrl,
       blog,
       ownerBlogs,
+      markdown
     });
   } catch (error) {
     console.log("Error Rendering blog details: ", error.message);

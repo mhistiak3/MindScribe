@@ -14,6 +14,24 @@ bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
       rel="stylesheet"
     />
     <script src="/js/script.js" defer></script>
+
+    <!-- Highlightjs CDN -->
+
+    <link
+      rel="stylesheet"
+      media="(prefers-color-scheme: dark)"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      media="(prefers-color-scheme: light)"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </head>
   <body>
     <!-- 
@@ -43,7 +61,10 @@ bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
             <div class="blog-author">
               <p class="avatar title-medium"><%= authorName.at() %></p>
               <div class="leading-text">
-                <a href="/profile/<%= authorUsername%>" class="title-medium  text-link">
+                <a
+                  href="/profile/<%= authorUsername%>"
+                  class="title-medium text-link"
+                >
                   <%= authorName %>
                 </a>
                 <p class="body-small text-on-surface-variant">
@@ -73,7 +94,7 @@ bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
             <div class="blog-content">
               <h1 class="title headline-large text-on-surface"><%= title%></h1>
               <div class="content-markdown text-on-surface-variant">
-                <%- content%>
+                <%- markdown?.render(content) %>
               </div>
             </div>
 

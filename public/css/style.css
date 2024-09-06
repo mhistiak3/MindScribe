@@ -480,13 +480,14 @@ button {
 .text-on-surface {
   color: var(--on-surface);
 }
-.text-primary, .text-link {
+.text-primary,
+.text-link {
   color: var(--primary);
 }
 .icon-small {
   font-size: 18px;
 }
-.text-link:hover{
+.text-link:hover {
   text-decoration: underline;
 }
 
@@ -882,6 +883,8 @@ span.material-symbols-rounded {
   --state-layer-bg: var(--on-surface-variant);
 }
 
+
+
 /** 
  *  Progress bar
 */
@@ -1094,7 +1097,7 @@ span.material-symbols-rounded {
 }
 .blog-content,
 .more-blog {
-  padding-inline: var(--space-4);
+  padding-inline: var(--space-6);
 }
 .blog-content,
 .blog-content .title {
@@ -1145,6 +1148,80 @@ span.material-symbols-rounded {
 .more-blog .card {
   min-width: 280px;
   width: 100%;
+}
+
+/* for markdown */
+.content-markdown :is(a, span) {
+  display: inline;
+}
+.content-markdown :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--on-surface);
+  margin-block: var(--space-5) var(--space-4);
+}
+.content-markdown :is(ul, ol, blockquote, hr, img) {
+  margin-block: var(--space-4);
+}
+.content-markdown li {
+  list-style: initial;
+  margin-inline-start: var(--space-6);
+  margin-block: var(--space-2);
+}
+.content-markdown p {
+  margin-block: var(--space-3);
+}
+.content-markdown blockquote {
+  background-color: var(--surface-container);
+  padding: var(--space-1) var(--space-5);
+  font-style: italic;
+  letter-spacing: 0.75px;
+}
+.content-markdown hr {
+  max-width: 120px;
+  margin-inline: auto;
+  border: 2px solid var(--outline-variant);
+  border-radius: var(--radius-full);
+}
+.content-markdown a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+.content-markdown img {
+  max-width: 100%;
+  max-height: calc(50vh +180px);
+  margin-inline: auto;
+  background-color: var(--surface-container);
+  border-radius: var(--radius-small);
+}
+.content-markdown pre {
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+  border: 1 dashed var(--outline-variant);
+  margin-block: var(--space-6);
+}
+.content-markdown code:not(.hljs) {
+  display: inline-block;
+  background-color: var(--surface-container-highest);
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-extra-small);
+}
+.content-markdown tabel {
+  display: block;
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: max-content;
+  max-width: 100%;
+  border-radius: var(--radius-small);
+  box-shadow: inset 0 0 0 1px var(--outline-variant);
+  overflow: auto;
+}
+.content-markdown thead,
+.content-markdown tbody tr:nth-child(even) {
+  background-color: var(--surface-container);
+}
+.content-markdown :where(th, td){
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--outline-variant);
 }
 
 /*-----------------------------------*\
