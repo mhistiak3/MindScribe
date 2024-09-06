@@ -11,6 +11,7 @@
  **/
 const mongoose = require("mongoose");
 const Blog = require("../models/blogModel");
+const User = require("../models/UserModel");
 const markdown = require("../config/markdown_it_config");
 
 /**
@@ -53,10 +54,19 @@ const renderBlogDetail = async (req, res, next) => {
       .sort({ createAt: "desc" })
       .limit(3);
 
+      // Retrive session user reacted and reading list blog
+      let user;
+      if(req.session.user){
+        user = await User.findOne({
+          username: req.session.user.username,
+        }).select("reactedBlogs readingList");
+      }
+
     res.render("./pages/blogDetail", {
       sessionUser: req.session?.user,
       route: req.originalUrl,
       blog,
+      user,
       ownerBlogs,
       markdown
     });

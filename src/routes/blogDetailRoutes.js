@@ -15,11 +15,19 @@ const router = express.Router();
  * custom modules
  **/
 const renderBlogDetail = require("../controllers/blogDetailController");
+const {
+  updateReaction,
+  removeReaction,
+} = require("../controllers/reactionController");
 
 
-// * GET Route: Render the login form
+// * GET Route: Render the blog details
 router.get("/:blogId", renderBlogDetail);
 
+// * PUT Route: Update blog reactions
+router.put("/:blogId/reactions", updateReaction);
 
+// * DELETE Route: Remove blog reactions
+router.delete("/:blogId/reactions", removeReaction);
 
 module.exports = router;

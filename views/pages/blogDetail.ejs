@@ -3,20 +3,21 @@ owner:{name: authorName, profilePhoto: {url: profilePhotoURL},
 username:authorUsername}, reaction, readingTime, totalBookmark, createdAt} =
 blog; /* * Compress bannerusing cloudinary Transformation URL API */ const
 compressedBannerURL =
-bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
+bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
+/* Destrunter logged user */ const {readingList:userReadingListedBlogs,
+reactedBlogs:userReactedBlogs}=locals.user || {} %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <%- include("../partials/head",{title:`${title} | MindScribe`}) %>
 
+    <!-- Google Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Inconsolata:wght@200..900&family=Inter:ital,opsz@0,14..32;1,14..32&family=Roboto+Mono&display=swap"
       rel="stylesheet"
     />
-    <script src="/js/script.js" defer></script>
 
     <!-- Highlightjs CDN -->
-
     <link
       rel="stylesheet"
       media="(prefers-color-scheme: dark)"
@@ -32,6 +33,10 @@ bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
     <script>
       hljs.highlightAll();
     </script>
+
+    <!-- Custome Js -->
+    <script src="/js/script.js" defer></script>
+    <script src="/js/reaction.js" defer></script>
   </head>
   <body>
     <!-- 
@@ -101,7 +106,7 @@ bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/") %>
             <!-- Blog Actions -->
             <div class="blog-actions">
               <div class="action-item">
-                <button class="icon-btn filled-tonal" data-reaction-btn>
+                <button class="icon-btn filled-tonal <%= userReactedBlogs?.includes(currentBlogId) ? "active":"" %>" data-reaction-btn>
                   <span class="material-symbols-rounded icon" aria-hidden="true"
                     >favorite</span
                   >
