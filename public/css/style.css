@@ -877,10 +877,64 @@ span.material-symbols-rounded {
   border-radius: var(--radius-full);
   --state-layer-bg: var(--on-surface);
 }
+.icon-btn.active .icon{
+  font-variation-settings: "FILL" 1;
+}
 .icon-btn.filled-tonal {
   background-color: var(--surface-container-highest);
   color: var(--on-surface-variant);
   --state-layer-bg: var(--on-surface-variant);
+}
+.icon-btn.filled-tonal.active {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  --state-layer-bg: var(--on-secondary-container);
+}
+.icon-btn.reaction-anim-add .icon{
+  animation: reaction-anim-add var(--tr-duration-extra-long-1) var(--tr-easing-emphasized) forwards;
+}
+@keyframes reaction-anim-add{
+  0%,29.9%{
+    color: var(--on-surface-variant);
+    font-variation-settings: 'FILL' 0;
+  }
+  20%,30%{
+    scale: 0.9;
+  }
+  50%{
+    scale:1.2;
+  }
+   30%,100%{
+    color: var(--reaction-active);
+    font-variation-settings: 'FILL' 1;
+  }
+
+}
+.icon-btn.reaction-anim-remove .icon{
+  animation: reaction-anim-remove var(--tr-duration-long-2) var(--tr-easing-emphasized) forwards;
+}
+@keyframes reaction-anim-remove{
+  0%,29.9%{
+    color: var(--reaction-active);
+    font-variation-settings: 'FILL' 1;
+  }
+  30%,50%{
+    scale: 0.9;
+  }
+ 70%{
+    scale:1;
+  }
+   30%,100%{
+    color: var(--on-surface-variant);
+    font-variation-settings: 'FILL' 0;
+  }
+
+}
+.icon-btn.icon-btn[disabled]{
+  background-color: var(--on-surface-disabled);
+  color: var(--on-surface-disabled-text);
+  pointer-events: none;
+  user-select: none;
 }
 
 
