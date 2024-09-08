@@ -1,9 +1,8 @@
 <% const {_id: currentBlogId, banner:{url: bannerURL}, title, content,
 owner:{name: authorName, profilePhoto: {url: profilePhotoURL},
-username:authorUsername}, reaction, readingTime, totalBookmark, createdAt} =
-blog; /* * Compress bannerusing cloudinary Transformation URL API */ const
-compressedBannerURL =
-bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
+username:authorUsername}, reaction, readingTime, totalBookmark, createdAt}=blog;
+/* * Compress bannerusing cloudinary Transformation URL API */ const
+compressedBannerURL=bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
 /* Destrunter logged user */ const {readingList:userReadingListedBlogs,
 reactedBlogs:userReactedBlogs}=locals.user || {} %>
 <!DOCTYPE html>
@@ -36,9 +35,11 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
 
     <!-- Custome Js -->
     <script src="/js/script.js" defer></script>
-    <script src="/js/reaction.js" defer></script>
-    <script src="/js/readingList.js" defer></script>
+    <script type="module" src="/js/reaction.js" defer></script>
+    <script type="module" src="/js/readingList.js" defer></script>
+    
   </head>
+
   <body>
     <!-- 
      *  TOP APP BAR
@@ -80,7 +81,7 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
                 </p>
               </div>
 
-              <% if(authorUsername === locals.sessionUser?.username){ %>
+              <% if(authorUsername===locals.sessionUser?.username){ %>
               <a
                 href="/blogs/<%=currentBlogId %>/edit"
                 class="btn filled-tonal"
@@ -107,31 +108,40 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
             <!-- Blog Actions -->
             <div class="blog-actions">
               <div class="action-item">
-                <button class="icon-btn filled-tonal <%= userReactedBlogs?.includes(currentBlogId) ? "active":"" %>" data-reaction-btn>
+                <button
+                  class="icon-btn filled-tonal<%= userReactedBlogs?.includes(currentBlogId) ? ' active' : '' %>"
+                  data-reaction-btn
+                >
                   <span class="material-symbols-rounded icon" aria-hidden="true"
                     >favorite</span
                   >
                   <div class="state-layer"></div>
                 </button>
+
                 <p class="label-large text-on-surface-variant">
-                  <span data-reaction-number><%= reaction %></span> Reactions
+                  <span data-reaction-number> <%= reaction %> </span> Reactions
                 </p>
               </div>
 
               <div class="action-item">
-                <button class="icon-btn filled-tonal <%= userReadingListedBlogs?.includes(currentBlogId) ? "active":"" %>" data-reading-list-btn>
-                  <span class="material-symbols-rounded icon" aria-hidden="true">bookmark </span>
+                <button
+                  class="icon-btn filled-tonal<%= userReadingListedBlogs?.includes(currentBlogId) ? ' active' : '' %>"
+                  data-reading-list-btn
+                >
+                  <span class="material-symbols-rounded icon" aria-hidden="true"
+                    >bookmark
+                  </span>
                   <div class="state-layer"></div>
                 </button>
                 <p class="label-large text-on-surface-variant">
-                  <span data-reading-list-number><%= totalBookmark %></span>
+                  <span data-reading-list-number> <%= totalBookmark %> </span>
                   Bookmarks
                 </p>
               </div>
             </div>
           </article>
 
-          <!-- 
+          <!--
           *  BLOG DETAIL
           -->
           <% if(ownerBlogs.length){ %>
@@ -139,7 +149,7 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
             <h2 class="title title-large text-on-surface">Read next</h2>
 
             <div class="blog-list">
-              <% ownerBlogs.forEach(blog => { %> <%-
+              <% ownerBlogs.forEach(blog=> { %> <%-
               include("../partials/card",{blog}) %> <% }); %>
             </div>
           </section>
