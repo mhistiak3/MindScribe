@@ -1,7 +1,7 @@
 <% const {userAuthenticated,name,username}=sessionUser || {} %>
 <header class="top-app-bar" data-top-app-bar>
   <!-- for create blog page -->
-  <% if(route === "/createblog"){ %>
+  <% if(locals?.route === "/createblog"){ %>
   <button
     class="icon-btn filled-tonal"
     aria-label="Go to previous page"
@@ -33,7 +33,7 @@
   <div class="trailing-action-wrapper">
     <% if(userAuthenticated){ %>
 
-       <% if(route !== "/createblog"){ %>
+       <% if(locals?.route !== "/createblog"){ %>
 
     <a href="/createblog" class="btn btn-fill">
       <span class="material-symbols-rounded leading-icon">edit</span>

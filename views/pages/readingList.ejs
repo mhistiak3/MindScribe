@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head",{title:"Reading List | MindScribe"}) %>
+    <script src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- 
+     * TOP APP BAR
+    -->
+    <%- include("../partials/topAppBar") %>
+
+    <div class="main">
+      <article class="page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">
+            Reading List
+          </h2>
+
+          <!-- All BlogPost Render Here -->
+          <div class="blog-list">
+            <% if(locals.readingListBlogs.length) {
+            locals.readingListBlogs.forEach((blog)=>{ %>
+              <%- include("../partials/card",{blog}) %>
+             <% }) } else{ %>
+             <p class="body-large text-on-surface-varient">You haven't added any articals in reading list.</p>
+               <% } %>
+          </div>
+
+          <!-- Pagination Show Here -->
+          <% if(pagination.next || pagination.prev) { %> <%-
+          include("../partials/pagination") %> <% }%>
+        </div>
+      </article>
+    </div>
+
+    <!-- 
+       * Footer
+      -->
+    <%- include("../partials/footer") %>
+  </body>
+</html>

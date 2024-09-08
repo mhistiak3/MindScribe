@@ -22,6 +22,7 @@ const logout = require("./src/routes/logoutRoute");
 const home = require("./src/routes/homeRoutes");
 const createBlog = require("./src/routes/createBlogRoutes");
 const blogDetail = require("./src/routes/blogDetailRoutes");
+const readingList = require("./src/routes/readingListRoutes");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -93,6 +94,7 @@ app.use("/blogs", blogDetail);
 app.use(userAuth);
 app.use("/createblog", createBlog);
 app.use("/logout", logout);
+app.use("/readinglist", readingList);
 
 /**
  * Start Server
