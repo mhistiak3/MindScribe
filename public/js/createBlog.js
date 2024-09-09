@@ -9,7 +9,7 @@
 /**
  * import module
  **/
-import imagePreviewFunction from "./utilities/imagePreview.js";
+import imagePreview from "./utilities/imagePreview.js";
 import Snackbar from "./snackbar.js";
 import config from "./config.js";
 import imageAsDataURL from "./utilities/imageAsDataURL.js";
@@ -19,7 +19,7 @@ const imageField = document.querySelector("[data-image-filled]");
 const imagePreview = document.querySelector("[data-image-preview]");
 const imagePreviewClear = document.querySelector("[data-image-preview-clear]");
 
-// Event listener for image field change to trigger image previes
+// Event listener for image field change to trigger image preview
 imageField.addEventListener("change", () => {
   imagePreviewFunction(imageField, imagePreview);
 });
@@ -37,6 +37,8 @@ imagePreviewClear.addEventListener("click", clearImagePreview);
 const form = document.querySelector("[data-form]");
 const publisheBtn = document.querySelector("[data-publish-btn]");
 const progressBar = document.querySelector("[data-progress-bar]");
+
+// Published Blog
 async function handlePublishBlog(event) {
   event.preventDefault();
   publisheBtn.setAttribute("disabled", "");
@@ -66,8 +68,8 @@ async function handlePublishBlog(event) {
 
       // handle case where response is ok
       if (response.ok) {
-        console.log('c');
-        
+        submitBtn.removeAttribute("disabled");
+
         Snackbar({ message: "Your blog has been creted." });
         // Show progressBar loading-end
         progressBar.classList.add("loading-end");
@@ -78,8 +80,7 @@ async function handlePublishBlog(event) {
         publisheBtn.removeAttribute("disabled");
         progressBar.classList.add("loading-end");
         const { message } = await response.json();
-        Snackbar({type:"error", message });
-
+        Snackbar({ type: "error", message });
       }
     } else {
       // Enable publish button and show error message
