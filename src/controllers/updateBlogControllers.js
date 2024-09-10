@@ -6,11 +6,11 @@
  *
  */
 
-const Blog = require("../models/blogModel");
-
 /**
- * node modules
+ * custom modules
  **/
+const Blog = require("../models/blogModel");
+const uploadToCloudinary = require("../config/cloudinary_config");
 
 // Retrives a blog from database and render a page for updating it.
 const renderEditBlog = async (req, res) => {
@@ -46,4 +46,32 @@ const renderEditBlog = async (req, res) => {
   }
 };
 
-module.exports = renderEditBlog;
+const updateBlog = async (req, res) => {
+  try {
+    const { blogId } = req.params;
+    const { title, content, banner } = req.body;
+
+    // Find the blog wich one user want to update
+    const updatedBlog = await Blog.findById(blogId).select(
+      "title content banner"
+    );
+
+    if (banner) {
+      const bannerURL = await uploadToCloudinary(
+        banner,
+        updatedBlog.banner.public_id
+      );
+      updatedBlog.banner.url = bannerURL;
+    }
+    updatedBlog.title = title;
+    updatedBlog.content = content;
+
+    await updatedBlog.save();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Error to update blog: ", error.message);
+    throw error;
+  }
+};
+
+module.exports = { renderEditBlog, updateBlog };

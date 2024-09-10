@@ -14,12 +14,18 @@ const router = express.Router();
 /**
  * custom modules
  **/
-const renderEditBlog = require("../controllers/updateBlogControllers");
+const {
+  renderEditBlog,
+  updateBlog,
+} = require("../controllers/updateBlogControllers");
 
 
 
 // * GET Route: Render the edit blog page
 router.get("/:blogId/edit", renderEditBlog);
+
+// * PUT Route: Update Blog
+router.put("/:blogId/edit", updateBlog);
 
 
 

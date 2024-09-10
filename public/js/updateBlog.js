@@ -80,7 +80,10 @@ async function handleUpdateBlog(event) {
         // Show progressBar loading-end
         progressBar.classList.add("loading-end");
         // redirect to creted blog page
-        return (window.location = response.location.href.replace("/edit",""));
+        console.log(response);
+        
+        window.location = response.url.replace("/edit", "");
+        return 
       }
 
     //   Handle case when response is 400

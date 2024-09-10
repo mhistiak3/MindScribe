@@ -9,7 +9,7 @@
 /**
  * import module
  **/
-import imagePreview from "./utilities/imagePreview.js";
+import imagePreviewFunction from "./utilities/imagePreview.js";
 import Snackbar from "./snackbar.js";
 import config from "./config.js";
 import imageAsDataURL from "./utilities/imageAsDataURL.js";
@@ -68,7 +68,7 @@ async function handlePublishBlog(event) {
 
       // handle case where response is ok
       if (response.ok) {
-        submitBtn.removeAttribute("disabled");
+        publisheBtn.removeAttribute("disabled");
 
         Snackbar({ message: "Your blog has been creted." });
         // Show progressBar loading-end
