@@ -19,7 +19,7 @@ const renderProfile = async (req, res) => {
 
     // Hanbdle case where user not exits
     const userExist = await User.exists({ username });
-    if (!userExist) return res.render("./pages.404");
+    if (!userExist) return res.render("./pages/404");
 
     // Finde user Profile based on username
     const profile = await User.findOne({ username }).select(

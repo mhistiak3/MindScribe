@@ -1,4 +1,4 @@
-<% const {userAuthenticated,name,username}=sessionUser || {} %>
+<% const {userAuthenticated,name,username}=locals.sessionUser || {} %>
 <header class="top-app-bar" data-top-app-bar>
   <!-- for create blog page -->
   <% if(locals?.route === "/createblog"){ %>

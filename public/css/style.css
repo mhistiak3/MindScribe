@@ -1386,6 +1386,23 @@ body:has(.dialog-root.active) {
 }
 
 /*-----------------------------------*\
+  *  404 Page
+\*-----------------------------------*/
+.not-found-page .container{
+  min-height: calc(100vh - var(--top-app-bar-height) - var(--footer-height) - var(--space-12));
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  gap: var(--space-3);
+}
+.text-404{
+  max-width: 34ch;
+}
+.not-found-page .btn-fill{
+  margin: auto;
+}
+/*-----------------------------------*\
   *  RESPONSIVE for learger device
 \*-----------------------------------*/
 
