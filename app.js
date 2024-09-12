@@ -24,6 +24,7 @@ const createBlog = require("./src/routes/createBlogRoutes");
 const blogDetail = require("./src/routes/blogDetailRoutes");
 const readingList = require("./src/routes/readingListRoutes");
 const updateBlog = require("./src/routes/updateBlogRoutes");
+const profile = require("./src/routes/profileRoutes");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -88,6 +89,7 @@ app.use("/register", register);
 app.use("/login", login);
 app.use("/", home);
 app.use("/blogs", blogDetail);
+app.use("/profile", profile);
 
 /**
  * Application Authorization Routes

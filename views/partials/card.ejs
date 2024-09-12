@@ -1,7 +1,7 @@
 <% const {_id:blogId, banner: {url: BannerURL}, title, owner:{name,username},
 reaction, readingTime, totalBookmark, createdAt } = blog; /* * Compress
 bannerusing cloudinary Transformation URL API */ const compressedBannerURL =
-BannerURL?.replace("upload/","upload/w_360,h_155,c_auto/q_auto/f_auto/") %>
+BannerURL?.replace("upload/","upload/w_600,h_350,c_auto/q_auto/f_auto/") %>
 
 <div class="card">
   <% if(compressedBannerURL){ %>

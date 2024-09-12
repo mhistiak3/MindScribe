@@ -1352,6 +1352,40 @@ body:has(.dialog-root.active) {
 }
 
 /*-----------------------------------*\
+  *  PROFILE PAGE
+\*-----------------------------------*/
+.profile-card{
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.profile-image{
+  height: 160px;
+  width: 160px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+.bio{
+  margin-block: var(--space-3);
+}
+.profile-meta-list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  opacity: 0.8;
+  margin-block-end: var(--space-3);
+}
+.profile-meta-item{
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.profile-page .divider{
+  margin-block: var(--space-5);
+}
+
+/*-----------------------------------*\
   *  RESPONSIVE for learger device
 \*-----------------------------------*/
 
