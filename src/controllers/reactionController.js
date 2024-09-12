@@ -29,14 +29,16 @@ const updateReaction = async (req, res) => {
     const { blogId } = req.params;
 
     // Check user is already reacted
-    const currentUser = await User.findOne({ username }).select("reactedBlogs");
+    const currentUser = await User.findOne({ username }).select(
+      "reactedBlogs totalReactions"
+    );
     if (currentUser.reactedBlogs.includes(blogId)) {
       return res.sendStatus(400);
     }
 
     // Find the blog and update reaction count
     const reactedBlogs = await Blog.findById(blogId)
-      .select("reaction owner")
+      .select("reaction owner ")
       .populate({
         path: "owner",
         select: "totalReactions",
@@ -49,8 +51,8 @@ const updateReaction = async (req, res) => {
     await currentUser.save();
 
     // Update Reacted User total reaction
-    reactedBlogs.owner.totalReactions++;
-    await reactedBlogs.save();
+    currentUser.totalReactions++;
+    await currentUser.save();
     res.sendStatus(200);
   } catch (error) {
     console.log("Error to reaction: ", error.message);
@@ -70,7 +72,9 @@ const removeReaction = async (req, res) => {
     const { blogId } = req.params;
 
     // Check user is not reacted
-    const currentUser = await User.findOne({ username }).select("reactedBlogs");
+    const currentUser = await User.findOne({ username }).select(
+      "reactedBlogs totalReactions"
+    );
     if (!currentUser.reactedBlogs.includes(blogId)) {
       return res.sendStatus(400);
     }
@@ -93,8 +97,8 @@ const removeReaction = async (req, res) => {
     await currentUser.save();
 
     // Update Reacted User total reaction
-    reactedBlogs.owner.totalReactions--;
-    await reactedBlogs.save();
+     currentUser.totalReactions--;
+     await currentUser.save();
     res.sendStatus(200);
   } catch (error) {
     console.log("Error to delete reaction: ", error.message);
