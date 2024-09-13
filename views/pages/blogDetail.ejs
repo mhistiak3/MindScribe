@@ -1,10 +1,13 @@
-<% const {_id: currentBlogId, banner:{url: bannerURL}, title, content,
+<%
+const {_id: currentBlogId, banner:{url: bannerURL}, title, content,
 owner:{name: authorName, profilePhoto: {url: profilePhotoURL},
 username:authorUsername}, reaction, readingTime, totalBookmark, createdAt}=blog;
-/* * Compress bannerusing cloudinary Transformation URL API */ const
-compressedBannerURL=bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
-/* Destrunter logged user */ const {readingList:userReadingListedBlogs,
-reactedBlogs:userReactedBlogs}=locals.user || {} %>
+/* * Compress bannerusing cloudinary Transformation URL API */ 
+const compressedBannerURL=bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
+/* Destrunter logged user */ 
+const {readingList:userReadingListedBlogs,
+reactedBlogs:userReactedBlogs}=locals.user || {} 
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,6 +40,7 @@ reactedBlogs:userReactedBlogs}=locals.user || {} %>
     <script src="/js/script.js" defer></script>
     <script type="module" src="/js/reaction.js" defer></script>
     <script type="module" src="/js/readingList.js" defer></script>
+    <script src="/js/countVisits.js" defer></script>
     
   </head>
 

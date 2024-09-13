@@ -23,6 +23,7 @@ const {
   updateReadingList,
   removeReadingList,
 } = require("../controllers/readingListController");
+const { updateVisit } = require("../controllers/visitController");
 
 
 // * GET Route: Render the blog details
@@ -40,5 +41,7 @@ router.put("/:blogId/readingList", updateReadingList);
 // * DELETE Route: Remove from blog Reading List
 router.delete("/:blogId/readingList", removeReadingList);
 
+// * PUT Route: Update Blog Visit
+router.put("/:blogId/visit", updateVisit);
 
 module.exports = router;
