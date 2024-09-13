@@ -4,6 +4,7 @@
   <head>
     <%- include("../partials/head",{title:"Dashboard | MindScribe"}) %>
     <script src="/js/script.js" defer></script>
+    <script type="module" src="/js/deleteBlog.js" defer></script>
   </head>
   <body>
     <!-- 
@@ -62,7 +63,7 @@
                   <%=blogPublished.toLocaleString("en-US")%>
                 </h3>
                 <p class="title-medium text-on-surface-variant">
-                  Articke Published
+                  Article Published
                 </p>
               </div>
             </div>
@@ -87,5 +88,10 @@
        * Footer
       -->
     <%- include("../partials/footer") %>
+    
+      <!---- 
+       *  SNACKBAR
+      ---->
+    <div class="snackbar-wrapper" data-snackbar-wrapper></div>
   </body>
 </html>

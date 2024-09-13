@@ -26,6 +26,7 @@ const readingList = require("./src/routes/readingListRoutes");
 const updateBlog = require("./src/routes/updateBlogRoutes");
 const profile = require("./src/routes/profileRoutes");
 const dashboard = require("./src/routes/dashboardRoutes");
+const deleteBlog = require("./src/routes/deleteBlogRoute");
 const {
   APP_PORT,
   MONGO_CONNECTION_URL,
@@ -99,7 +100,7 @@ app.use(userAuth);
 app.use("/createblog", createBlog);
 app.use("/logout", logout);
 app.use("/readinglist", readingList);
-app.use("/blogs", updateBlog);
+app.use("/blogs", updateBlog,deleteBlog);
 app.use("/dashboard", dashboard);
 
 /**

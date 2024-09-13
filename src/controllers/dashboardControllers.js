@@ -25,7 +25,7 @@ const renderDashboard = async (req, res) => {
         select: "title createdAt updatedAt reaction totalVisit",
         options: { sort: { cretedAt: "desc" } },
       });
-      console.log(loggedUser);
+     
       
     res.render("./pages/dashboard", {
       sessionUser: req.session.user,
