@@ -1,0 +1,218 @@
+<% const
+{profilePhoto:{url:profilePhotoURL}={},name,username,email,bio}=locals.currentUser
+%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head",{title:"Settings | MindScribe"}) %>
+    <script src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <!-- 
+     * TOP APP BAR
+    -->
+    <%- include("../partials/topAppBar") %>
+
+    <main class="main">
+      <article class="page settings-page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">Settings</h2>
+          <div class="settings-wrapper">
+            <!-- form -->
+            <div class="settings-card">
+              <form class="settings-form" data-basic-info-form>
+                <div class="title-wrapper">
+                  <h3 class="headline-small text-on-surface">Basic info</h3>
+                  <button
+                    type="submit"
+                    class="btn filled-tonal"
+                    data-basic-info-submit
+                  >
+                    <p class="label-large">Save changes</p>
+                    <div class="state-layer"></div>
+                  </button>
+                </div>
+
+                <p class="body-large text-on-surface-variant">Profile photo</p>
+
+                <div class="image-field-wrapper avatar-image-field">
+                  <label
+                    for="profilePhoto"
+                    class="label label-large text-on-surface-variant"
+                  >
+                    <input
+                      type="file"
+                      name="profilePhoto"
+                      id="profilePhoto"
+                      accept="image/png, image/jpg, image/jpeg"
+                      data-image-field
+                    />
+                    <span class="material-symbols-rounded leading-icon"
+                      >cloud_upload</span
+                    >
+                    Upload photo
+                  </label>
+                  <div class="image-preview" data-image-preview></div>
+                  <button
+                    class="icon-btn filled-tonal"
+                    data-image-preview-clear
+                  >
+                    <span class="material-symbols-rounded">delete</span>
+                    <div class="state-layer"></div>
+                  </button>
+                </div>
+
+                <div class="wrapper">
+                  <div class="text-field-wrapper">
+                    <label for="name" class="label body-large">Full Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      autocomplete="name"
+                      placeholder=""
+                      value="<%= name%>"
+                      required
+                      class="body-large text-field"
+                    />
+                  </div>
+
+                  <div class="text-field-wrapper">
+                    <label for="username" class="label body-large"
+                      >Username</label
+                    >
+                    <input
+                      type="text"
+                      name="username"
+                      id="username"
+                      autocomplete="username"
+                      placeholder=""
+                      value="<%= username%>"
+                      required
+                      class="body-large text-field"
+                    />
+                  </div>
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="email" class="label body-large"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    autocomplete="email"
+                    placeholder=""
+                    value="<%= email%>"
+                    required
+                    class="body-large text-field"
+                  />
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="bio" class="label body-large">Short bio</label>
+                  <input
+                    type="text"
+                    name="bio"
+                    id="bio"
+                    autocomplete="bio"
+                    placeholder=""
+                    value="<%= bio%>"
+                    maxlength="120"
+                    class="body-large text-field"
+                  />
+                </div>
+              </form>
+            </div>
+
+            <!-- Password  -->
+            <div class="settings-card">
+              <form class="settings-form" data-password-form>
+                <div class="title-wrapper">
+                  <h3 class="headline-small text-on-surface">
+                    Change Password
+                  </h3>
+                  <button
+                    type="submit"
+                    class="btn filled-tonal"
+                    data-password-submit
+                  >
+                    <p class="label-large">Save changes</p>
+                    <div class="state-layer"></div>
+                  </button>
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="old-password" class="label body-large"
+                    >Old Password</label
+                  >
+                  <input
+                    type="password"
+                    name="old-password"
+                    id="old-password"
+                    autocomplete="current-password"
+                    placeholder=""
+                    required
+                    class="body-large text-field"
+                  />
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="new-password" class="label body-large"
+                    >New Password</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="new-password"
+                    autocomplete="new-password"
+                    placeholder=""
+                    minlength="8"
+                    required
+                    class="body-large text-field"
+                  />
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="confirm-password" class="label body-large"
+                    >Confirm password</label
+                  >
+                  <input
+                    type="password"
+                    name="confirm-password"
+                    id="confirm-password"
+                    autocomplete="confirm-password"
+                    placeholder=""
+                    required
+                    class="body-large text-field"
+                  />
+                </div>
+              </form>
+            </div>
+            <!-- Acount delete  -->
+            <div class="settings-card">
+                <h3 class="headline-small text-error">Delete account</h3>
+                <p class="body-large text-on-surface-variant card-text">Deleting your account in MindScribe will result in the permanent deletion of your personal data. this action cannot be undo.</p>
+                <button class="btn btn-fill error" data-account-delete>
+                    <p class="label-large">Delete your account</p>
+                    <div class="state-layer"></div>
+                </button>
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- 
+       * Footer
+      -->
+    <%- include("../partials/footer") %>
+
+    <!---- 
+       *  SNACKBAR
+      ---->
+    <div class="snackbar-wrapper" data-snackbar-wrapper></div>
+  </body>
+</html>

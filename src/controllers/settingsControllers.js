@@ -20,7 +20,7 @@ const renderSettings = async (req, res) => {
     // Current User
     const currentUser = await User.findOne({ username });
 
-    res.renser("./pages/settings", {
+    res.render("./pages/settings", {
       sessionUser: req.session.user,
       currentUser,
     });
