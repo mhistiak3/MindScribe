@@ -6,16 +6,13 @@
  *
  */
 
-/**
- *  node modules
- **/
-const mongoose = require("mongoose");
+
 
 /**
  *  custom modules
  **/
 const Blog = require("../models/blogModel");
-const User = require("../models/UserModel");
+
 
 // Add Rewaction in Blog
 const updateVisit = async (req, res) => {
