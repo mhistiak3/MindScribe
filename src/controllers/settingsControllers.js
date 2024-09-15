@@ -7,6 +7,10 @@
  */
 
 /**
+ *
+ **/
+const bcrypt = require("bcrypt");
+/**
  *  custom modules
  **/
 const uploadToCloudinary = require("../config/cloudinary_config");
@@ -85,13 +89,53 @@ const updateBasicInfo = async (req, res) => {
     currentUser.bio = bio;
 
     // Save updated User Information
-    await currentUser.save()
+    await currentUser.save();
 
-    res.sendStatus(200)
+    res.sendStatus(200);
   } catch (error) {
     console.log("Error to vist update: ", error.message);
     throw error;
   }
 };
 
-module.exports = { renderSettings, updateBasicInfo };
+// Update password
+const updatePassword = async (req, res) => {
+  try {
+    // Destructer user from session user
+    const { username: sessionUsername } = req.session.user;
+
+    const currentUser = await User.findOne({
+      username: sessionUsername,
+    }).select("password");
+
+    // destructers passwords
+    const { password, old_password } = req.body;
+
+    // Validate old passowrd
+    const isOldPassValid = await bcrypt.compare(
+      old_password,
+      currentUser.password
+    );
+
+    // Handle case where old password is not valid
+    if (!isOldPassValid) {
+      return res
+        .status(400)
+        .json({ message: "Your old password is not valid." });
+    }
+
+    // Hash the new password
+    const newPassword = await bcrypt.hash(password, 10);
+    currentUser.password = newPassword
+
+    // save new password
+    await currentUser.save()
+
+    res.sendStatus(200)
+
+  } catch (error) {
+    console.log("Error to vist update: ", error.message);
+    throw error;
+  }
+};
+module.exports = { renderSettings, updateBasicInfo, updatePassword };

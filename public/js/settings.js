@@ -112,6 +112,7 @@ basicInfoForm.addEventListener("submit", basicInfoUpdate);
 const passwordForm = document.querySelector("[data-password-form]");
 const passwordSubmit = document.querySelector("[data-password-submit]");
 
+// Upadate password
 const updatePassword = async (event) => {
   event.preventDefault();
   // disabled submit button
@@ -121,7 +122,7 @@ const updatePassword = async (event) => {
   const formData = new FormData(passwordForm);
 
   //   Handle case where password and confirm password not same
-  if (formData.get("password") !== formData.get("confirm-password")) {
+  if (formData.get("password") !== formData.get("confirm_password")) {
     passwordSubmit.removeAttribute("disabled");
     Snackbar({
       type: "error",
@@ -137,6 +138,9 @@ const updatePassword = async (event) => {
   // Send password form data to server
   const response = await fetch(`${window.location.href}/password`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body,
   });
 
