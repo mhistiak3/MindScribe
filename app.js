@@ -12,6 +12,7 @@
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const compression = require('compression')
 
 /**
  * custome module
@@ -45,6 +46,11 @@ const app = express();
  *  setting view engine
  **/
 app.set("view engine", "ejs");
+
+/**
+ * compression response body
+**/
+app.use(compression());
 
 /**
  * setting public directory

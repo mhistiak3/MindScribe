@@ -18,7 +18,7 @@ const renderHome = async (req, res, next) => {
     const totalBlogs = await Blog.countDocuments()
 
     // Get pagination object
-    const pagination = getPagination("/", req.params, 5, totalBlogs);
+    const pagination = getPagination("/", req.params, 20, totalBlogs);
     
 
     // Retriving blog from the database, selecting specific fields adn populating 'owner' field
