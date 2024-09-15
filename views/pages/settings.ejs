@@ -1,11 +1,7 @@
-<% const {
-  profilePhoto: { url: profilePhotoURL } = {},  // If profilePhoto is undefined, it'll default to an empty object.
-  name,
-  username,
-  email,
-  bio
-} = locals.currentUser || {}; // If currentUser is undefined, it'll default to an empty object.
-
+<% const { profilePhoto: { url: profilePhotoURL } = {}, username, email, bio,name } =
+locals.currentUser || {}; /* * Compress profile photo using cloudinary Transformation URL
+API */ const
+compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_200,h_200,c_auto/q_auto/f_auto/")
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,8 +55,20 @@
                     >
                     Upload photo
                   </label>
+                  <% if(compressedProfilePhotoURL){ %>
+                  <div class="image-preview show" data-image-preview>
+                    <img
+                      src="<%=compressedProfilePhotoURL%>"
+                      alt="<%=name%>"
+                      class="img-cover"
+                    />
+                  </div>
+                  <%} else{%>
                   <div class="image-preview" data-image-preview></div>
-                  <button type="button"
+                  <%}%>
+
+                  <button
+                    type="button"
                     class="icon-btn filled-tonal"
                     data-image-preview-clear
                   >
@@ -199,14 +207,16 @@
             </div>
             <!-- Acount delete  -->
             <div class="settings-card">
-                <h3 class="headline-small text-error">Delete account</h3>
-                <p class="body-large text-on-surface-variant card-text">Deleting your account in MindScribe will result in the permanent deletion of your personal data. this action cannot be undo.</p>
-                <button class="btn btn-fill error" data-account-delete>
-                    <p class="label-large">Delete your account</p>
-                    <div class="state-layer"></div>
-                </button>
+              <h3 class="headline-small text-error">Delete account</h3>
+              <p class="body-large text-on-surface-variant card-text">
+                Deleting your account in MindScribe will result in the permanent
+                deletion of your personal data. this action cannot be undo.
+              </p>
+              <button class="btn btn-fill error" data-account-delete>
+                <p class="label-large">Delete your account</p>
+                <div class="state-layer"></div>
+              </button>
             </div>
-            
           </div>
         </div>
       </article>

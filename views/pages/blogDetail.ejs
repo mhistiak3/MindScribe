@@ -4,6 +4,9 @@ owner:{name: authorName, profilePhoto: {url: profilePhotoURL},
 username:authorUsername}, reaction, readingTime, totalBookmark, createdAt}=blog;
 /* * Compress bannerusing cloudinary Transformation URL API */ 
 const compressedBannerURL=bannerURL?.replace("upload/","upload/w_960,h_420,c_auto/q_auto/f_auto/")
+ /* *
+Compress profile photo using cloudinary Transformation URL API */ 
+const compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_60,h_60,c_auto/q_auto/f_auto/")
 /* Destrunter logged user */ 
 const {readingList:userReadingListedBlogs,
 reactedBlogs:userReactedBlogs}=locals.user || {} 
@@ -70,7 +73,14 @@ reactedBlogs:userReactedBlogs}=locals.user || {}
 
             <!-- Blog Author -->
             <div class="blog-author">
-              <p class="avatar title-medium"><%= authorName.at() %></p>
+            
+        <% if(compressedProfilePhotoURL){ %>
+          <figure class="avatar"><img src="<%=compressedProfilePhotoURL%>" alt="<%=authorName%>" class="img-cover" width="40" height="40"></figure>
+        <% }else{ %>
+         <p class="avatar title-medium"><%= authorName.at() %></p>
+        <% } %>
+      
+             
               <div class="leading-text">
                 <a
                   href="/profile/<%= authorUsername%>"
