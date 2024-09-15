@@ -6,6 +6,7 @@
   <head>
     <%- include("../partials/head",{title:"Settings | MindScribe"}) %>
     <script src="/js/script.js" defer></script>
+    <script type="module" src="/js/settings.js" defer></script>
   </head>
   <body>
     <!-- 
@@ -53,7 +54,7 @@
                     Upload photo
                   </label>
                   <div class="image-preview" data-image-preview></div>
-                  <button
+                  <button type="button"
                     class="icon-btn filled-tonal"
                     data-image-preview-clear
                   >

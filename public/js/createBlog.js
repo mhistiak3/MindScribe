@@ -26,6 +26,8 @@ imageField.addEventListener("change", () => {
 
 // Clears the image preview by removing the show class from the preview container
 function clearImagePreview() {
+  console.log('d');
+  
   imagePreview.classList.remove("show");
   imagePreview.innerHTML = "";
 }
