@@ -10,11 +10,13 @@
  *
  **/
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
 /**
  *  custom modules
  **/
 const uploadToCloudinary = require("../config/cloudinary_config");
 const User = require("../models/UserModel");
+const Blog = require("../models/blogModel");
 
 // Add Rewaction in Blog
 const renderSettings = async (req, res) => {
@@ -126,16 +128,47 @@ const updatePassword = async (req, res) => {
 
     // Hash the new password
     const newPassword = await bcrypt.hash(password, 10);
-    currentUser.password = newPassword
+    currentUser.password = newPassword;
 
     // save new password
-    await currentUser.save()
+    await currentUser.save();
 
-    res.sendStatus(200)
-
+    res.sendStatus(200);
   } catch (error) {
     console.log("Error to vist update: ", error.message);
     throw error;
   }
 };
-module.exports = { renderSettings, updateBasicInfo, updatePassword };
+
+const deleteAccount = async (req, res) => {
+  try {
+    // Destructer user from session user
+    const { username } = req.session.user;
+
+    const currentUser = await User.findOne({
+      username,
+    }).select("blogs");
+
+    // delete all blog of this user
+    await Blog.deleteMany({ _id: { $in: currentUser.blogs } });
+    // delete currentUser accout
+    await User.deleteOne({ username });
+
+    // /Destroy current user session from all devices
+    const Session = mongoose.connection.db.collection("sessions");
+    await Session.deleteMany({ session: { $regex: username, $options: "i" } });
+    // destroy from client device
+    req.session.destroy();
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Error to vist update: ", error.message);
+    throw error;
+  }
+};
+module.exports = {
+  renderSettings,
+  updateBasicInfo,
+  updatePassword,
+  deleteAccount,
+};

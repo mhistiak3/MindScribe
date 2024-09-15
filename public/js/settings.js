@@ -38,7 +38,7 @@ const basicInfoSubmit = document.querySelector("[data-basic-info-form]");
 const oldFormData = new FormData(basicInfoForm);
 const progressBar = document.querySelector("[data-progress-bar]");
 
-// update basic info
+// update basic info functionality
 const basicInfoUpdate = async (event) => {
   event.preventDefault();
   // disabled submit button
@@ -104,7 +104,6 @@ const basicInfoUpdate = async (event) => {
     Snackbar({ type: "error", message });
   }
 };
-
 // Submit form
 basicInfoForm.addEventListener("submit", basicInfoUpdate);
 
@@ -161,3 +160,31 @@ const updatePassword = async (event) => {
 };
 
 passwordForm.addEventListener("submit", updatePassword);
+
+// Account delete functionality
+const accountDeleteBtn = document.querySelector("[data-account-delete]");
+
+const deleteAccount = async () => {
+  const confirmDelete = confirm(
+    "Are you sure you want to delete your account?"
+  );
+  if (!confirmDelete) return;
+
+  accountDeleteBtn.setAttribute("disabled", "");
+  progressBar.classList.add("loading");
+
+  //   send request to server for account deletion
+  const response = await fetch(`${window.location.href}/account`, {
+    method: "DELETE",
+  });
+
+  //   Handle case when response is ok
+  if (response.ok) {
+    accountDeleteBtn.removeAttribute("disabled");
+    progressBar.classList.add("loading-end");
+    //   redirect to home page
+    window.location = `${window.location.origin}/`;
+  }
+};
+
+accountDeleteBtn.addEventListener("click", deleteAccount);
