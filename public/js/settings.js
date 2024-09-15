@@ -107,3 +107,53 @@ const basicInfoUpdate = async (event) => {
 
 // Submit form
 basicInfoForm.addEventListener("submit", basicInfoUpdate);
+
+// Change Password functionality
+const passwordForm = document.querySelector("[data-password-form]");
+const passwordSubmit = document.querySelector("[data-password-submit]");
+
+const updatePassword = async (event) => {
+  event.preventDefault();
+  // disabled submit button
+  passwordSubmit.setAttribute("disabled", "");
+
+  // Make form data and handle it
+  const formData = new FormData(passwordForm);
+
+  //   Handle case where password and confirm password not same
+  if (formData.get("password") !== formData.get("confirm-password")) {
+    passwordSubmit.removeAttribute("disabled");
+    Snackbar({
+      type: "error",
+      message:
+        "Please ensure your password nad confirm password fields contain the same value.",
+    });
+    return;
+  }
+
+  progressBar.classList.add("loading");
+  const body = JSON.stringify(Object.fromEntries(formData.entries()));
+
+  // Send password form data to server
+  const response = await fetch(`${window.location.href}/password`, {
+    method: "PUT",
+    body,
+  });
+
+  //   response ok
+  if (response.ok) {
+    passwordSubmit.removeAttribute("disabled");
+    progressBar.classList.add("loading-end");
+    Snackbar({ message: "Your password has been updated." });
+    return;
+  }
+  //   Handle case where reponse is not ok
+  if (response.status === 400) {
+    passwordSubmit.removeAttribute("disabled");
+    progressBar.classList.add("loading-end");
+    const { message } = await response.json();
+    Snackbar({ type: "error", message });
+  }
+};
+
+passwordForm.addEventListener("submit", updatePassword);
