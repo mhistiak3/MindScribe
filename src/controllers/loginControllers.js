@@ -57,7 +57,7 @@ const userLogin = async (req, res, next) => {
       userAuthenticated: true,
       name: currentUser.name,
       username: currentUser.username,
-      profilePhotoURL: currentUser.profilePhoto?.url,
+      profilePhoto: currentUser.profilePhoto?.url,
     };
     return res.redirect("/");
   } catch (error) {

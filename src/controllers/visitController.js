@@ -19,8 +19,7 @@ const updateVisit = async (req, res) => {
   try {
    
 
-    // Destructer user from session user
-    const { username } = req.session.user;
+    
     // Destructer blogId from request param
     const { blogId } = req.params;
 

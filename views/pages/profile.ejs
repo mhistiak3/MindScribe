@@ -1,5 +1,4 @@
-<% const
-{profilePhoto:{url:profilePhotoURL="../images/profilePhoto-default.jpg"
+<% const {profilePhoto:{url:profilePhotoURL="../images/profilePhoto-default.jpg"
 }={},name:profileName,username:profileUsername,bio,blogPublished,createdAt}=locals.profile
 /* * Compress profile photo using cloudinary Transformation URL API */ const
 compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_200,h_200,c_auto/q_auto/f_auto/")
@@ -25,55 +24,57 @@ compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_200,h_200
           <div class="profile-card">
             <figure class="profile-image img-holder">
               <img
-              class="img-cover"
+                class="img-cover"
                 src="<%=compressedProfilePhotoURL%>"
                 alt="<%=profileUsername%>"
                 width="200"
                 height="200"
               />
             </figure>
-            <div class="profile-content">
-              <h3 class="title headline-medium text-on-surface">
-                <%=profileName%>
-              </h3>
-              <p class="bio body-large text-onsurface-variant">
-                <%=bio || "404 bio not found" %>
-              </p>
-            </div>
-
-            <div class="profile-meta-list">
-              <!-- 1 -->
-              <div class="profile-meta-item text-onsurface-variant">
-                <span class="material-symbols-rounded" aria-hidden="true"
-                  >calendar_month</span
-                >
-                <p class="body-large text-onsurface-variant">
-                  Member since <%= new
-                  Date(createdAt).toLocaleDateString("en-US",{day:'2-digit',month:"long",year:"numeric"})
-                  %>
+            <div  class="profile-content">
+              <div>
+                <h3 class="title headline-medium text-on-surface">
+                  <%=profileName%>
+                </h3>
+                <p class="bio body-large text-onsurface-variant">
+                  <%=bio || "404 bio not found" %>
                 </p>
               </div>
 
-              <!-- 2 -->
-              <div class="profile-meta-item text-onsurface-variant">
-                <span class="material-symbols-rounded" aria-hidden="true"
-                  >article</span
-                >
-                <p class="body-large text-onsurface-variant">
-                  <%= blogPublished%> blog published
-                </p>
-              </div>
-            </div>
+              <div class="profile-meta-list">
+                <!-- 1 -->
+                <div class="profile-meta-item text-onsurface-variant">
+                  <span class="material-symbols-rounded" aria-hidden="true"
+                    >calendar_month</span
+                  >
+                  <p class="body-large text-onsurface-variant">
+                    Member since <%= new
+                    Date(createdAt).toLocaleDateString("en-US",{day:'2-digit',month:"long",year:"numeric"})
+                    %>
+                  </p>
+                </div>
 
-            <% if(profileUsername===locals.sessionUser?.username){ %>
-            <a href="/settings" class="btn filled-tonal">
-              <span class="material-symbols-rounded" aria-hidden="true"
-                >edit_square</span
-              >
-              <p class="label-large">Edit profile</p>
-              <div class="state-layer"></div>
-            </a>
-            <% } %>
+                <!-- 2 -->
+                <div class="profile-meta-item text-onsurface-variant">
+                  <span class="material-symbols-rounded" aria-hidden="true"
+                    >article</span
+                  >
+                  <p class="body-large text-onsurface-variant">
+                    <%= blogPublished%> blog published
+                  </p>
+                </div>
+              </div>
+
+              <% if(profileUsername===locals.sessionUser?.username){ %>
+              <a href="/settings" class="btn filled-tonal">
+                <span class="material-symbols-rounded" aria-hidden="true"
+                  >edit_square</span
+                >
+                <p class="label-large">Edit profile</p>
+                <div class="state-layer"></div>
+              </a>
+              <% } %>
+            </div>
           </div>
           <div class="divider"></div>
           <div class="blog-list">
@@ -81,10 +82,9 @@ compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_200,h_200
             <%locals.profileBlogs.forEach((blog)=>{%> <%-
             include("../partials/card",{blog})%> <%})}%>
           </div>
-           <!-- Pagination Show Here -->
-          <% if(locals.pagination.next || locals.pagination.prev) { %>
-           <%- include("../partials/pagination") %>
-             <% }%>
+          <!-- Pagination Show Here -->
+          <% if(locals.pagination.next || locals.pagination.prev) { %> <%-
+          include("../partials/pagination") %> <% }%>
         </div>
       </article>
     </div>

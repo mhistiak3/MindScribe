@@ -1184,18 +1184,16 @@ body:has(.dialog-root.active) {
 .form-card .btn {
   max-width: 100%;
 }
+
 /*-----------------------------------*\
-  *  FOOTER
+  *  HOME PAGE
 \*-----------------------------------*/
-.footer {
-  height: var(--footer-height);
-  padding-block: var(--space-5);
-  text-align: center;
-  color: var(--on-surface-variant);
-  border-block-start: 1px solid var(--outline-variant);
+.home-page .blog-list {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-items: stretch;
 }
-.footer .container {
-  opacity: 0.8;
+.home-page .card:not(:first-child) .card-banner {
+  display: none;
 }
 
 /*-----------------------------------*\
@@ -1250,6 +1248,7 @@ body:has(.dialog-root.active) {
   padding-inline: 0;
 }
 .blog-detail {
+ 
   position: relative;
 }
 .blog-author {
@@ -1502,14 +1501,14 @@ body:has(.dialog-root.active) {
 .settings-card:not(:last-child) {
   margin-block-end: var(--space-2);
 }
-.settings-wrapper .title-wrapper{
+.settings-wrapper .title-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-4);
   margin-block-end: var(--space-4);
 }
-.avatar-image-field{
+.avatar-image-field {
   width: 160px;
   height: 160px;
   border-radius: var(--radius-full);
@@ -1517,7 +1516,7 @@ body:has(.dialog-root.active) {
   border-color: var(--outline);
   overflow: visible;
 }
-.avatar-image-field .label{
+.avatar-image-field .label {
   inset: 0;
   translate: 0;
   display: grid;
@@ -1527,49 +1526,104 @@ body:has(.dialog-root.active) {
   pointer-events: initial;
   cursor: pointer;
 }
-.avatar-image-field:has( .image-preview.show) .label{
+.avatar-image-field:has(.image-preview.show) .label {
   display: none;
 }
-.avatar-image-field .image-preview{
+.avatar-image-field .image-preview {
   border-radius: var(--radius-full);
   aspect-ratio: 1 / 1;
 }
-.avatar-image-field .icon-btn{
+.avatar-image-field .icon-btn {
   top: 0;
   right: 0;
 }
-.settings-form .text-field-wrapper{
+.settings-form .text-field-wrapper {
   margin-block-start: var(--space-5);
   background-color: var(--surface-container-highest);
 }
-.settings-card .card-text{
+.settings-card .card-text {
   margin-block: var(--space-3) var(--space-4);
 }
 
-
-
-
+/*-----------------------------------*\
+  *  FOOTER
+\*-----------------------------------*/
+.footer {
+  height: var(--footer-height);
+  padding-block: var(--space-5);
+  text-align: center;
+  color: var(--on-surface-variant);
+  border-block-start: 1px solid var(--outline-variant);
+}
+.footer .container {
+  opacity: 0.8;
+}
 
 /*-----------------------------------*\
   *  RESPONSIVE for learger device
 \*-----------------------------------*/
-
-@media (min-width: 768px) {
-  /*-----------------------------------*\
-  * COMPONENTS
-\*-----------------------------------*/
-
+/* 600px */
+@media (min-width: 600px) {
   /* 
- * Text field
-*/
+  HOME PAGE
+  */
+  .home-page .card:not(:first-child) .card-banner {
+    display: block;
+  }
+}
+
+/* 770px */
+@media (min-width: 770px) {
+  /* 
+   *  REUSED STYLE
+  */
+  .page {
+    padding-block: var(--space-6);
+  }
+  .page-title {
+    font-size: var(--fs-headline-medium);
+    line-height: var(--lh-headline-medium);
+    margin-block-end: var(--space-6);
+  }
+  .container {
+    max-width: 992px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+  .blog-list {
+    gap: var(--space-3);
+  }
+
+  /*------------
+  * COMPONENTS
+   -------------*/
+  /* Top App Bar */
+  .top-app-bar {
+    padding-inline: var(--space-6);
+  }
+
+  /* Text field */
   .text-field-wrapper {
     background-color: var(--surface-container);
   }
+  /* pagination */
+  .pagination {
+    gap: var(--space-6);
+    margin-block-start: var(--space-6);
+  }
+  /* Card */
+  .card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-  /*-----------------------------------*\
-  * REGISTER & LOGIN PAGE
-\*-----------------------------------*/
-
+  /*
+    REGISTER & LOGIN PAGE
+  */
   .form-card {
     padding: var(--space-10);
     border-radius: var(--radius-medium);
@@ -1582,11 +1636,88 @@ body:has(.dialog-root.active) {
     margin-block: var(--space-6);
   }
 
-  /*-----------------------------------*\
-  *  CREATE BLOG
-\*-----------------------------------*/
-  /* .create-blog-page {
-    margin: auto;
-    max-width: 90vw;
-  } */
+  /*
+     CREATE BLOG PAGE
+   */
+  .blog-write-form {
+    gap: var(--space-6);
+    padding: var(--space-6);
+  }
+  .create-blog-page .title-field {
+    font-size: var(--fs-display-medium);
+    line-height: var(--lh-display-medium);
+  }
+
+  /*
+    BLOG DETAIL PAGE
+   */
+  .blog-detail-page .container {
+    padding-inline: var(--space-4);
+  }
+  .blog-banner {
+    border-radius: var(--radius-large);
+  }
+  .blog-content,
+  .more-blog {
+    padding-inline: unset;
+  }
+  .blog-content .title {
+    font-size: var(--fs-display-medium);
+    line-height: var(--lh-display-medium);
+  }
+  /*
+    PROFILE PAGE
+   */
+  .profile-card {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .profile-content {
+    width: 100%;
+    position: relative;
+    padding-inline-end: 180px;
+  }
+  .profile-content .title {
+    font-size: var(--fs-headline-large);
+    line-height: var(--lh-headline-large);
+  }
+  .profile-content .btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+/* 1200px */
+@media (min-width: 1200px){
+  /* 
+   * BLOG DETAIL
+  */
+  .blog-actions{bottom: var(--space-6);}
+
+  /* 
+   * PROFILE PAGE
+  */
+  .profile-page .divider{
+    margin-block: var(--space-6);
+  }
+  .post-list .list-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* 
+   * SETTINGS PAGE
+  */
+  .settings-card:not(:last-child){
+    margin-block-end: var(--space-4);
+  }
+   .settings-card{
+    padding: var(--space-6);
+   }
+   .settings-form .wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+   }
 }
