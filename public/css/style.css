@@ -817,7 +817,7 @@ span.material-symbols-rounded {
   position: absolute;
   top: calc(100% + 4px);
   right: 0;
-  min-width: 180px;
+  min-width: 230px;
   max-width: 280px;
   background-color: var(--surface-container);
   padding-block: var(--space-2);

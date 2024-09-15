@@ -1,5 +1,11 @@
-<% const
-{profilePhoto:{url:profilePhotoURL}={},name,username,email,bio}=locals.currentUser
+<% const {
+  profilePhoto: { url: profilePhotoURL } = {},  // If profilePhoto is undefined, it'll default to an empty object.
+  name,
+  username,
+  email,
+  bio
+} = locals.currentUser || {}; // If currentUser is undefined, it'll default to an empty object.
+
 %>
 <!DOCTYPE html>
 <html lang="en">

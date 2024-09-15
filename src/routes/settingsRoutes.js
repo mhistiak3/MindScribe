@@ -14,9 +14,10 @@ const router = express.Router();
 /**
  * custom modules
  **/
-const { renderSettings } = require("../controllers/settingsControllers");
+const { renderSettings, updateBasicInfo } = require("../controllers/settingsControllers");
 
 // * GET Route: Render the settings page.
 router.get("/", renderSettings);
+router.put("/basic-info", updateBasicInfo);
 
 module.exports = router;

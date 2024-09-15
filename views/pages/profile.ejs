@@ -1,5 +1,5 @@
 <% const
-{profilePhoto:{usrl:profilePhotoURL="../images/profilePhoto-default.jpg"
+{profilePhoto:{url:profilePhotoURL="../images/profilePhoto-default.jpg"
 }={},name:profileName,username:profileUsername,bio,blogPublished,createdAt}=locals.profile
 /* * Compress profile photo using cloudinary Transformation URL API */ const
 compressedProfilePhotoURL=profilePhotoURL?.replace("upload/","upload/w_200,h_200,c_auto/q_auto/f_auto/")
