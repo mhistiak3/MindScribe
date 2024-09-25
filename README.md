@@ -2,6 +2,7 @@
 
 **MindScribe** is a blog application where users can share their thoughts via blog posts. Built using **Node.js**, **Express.js**, **MongoDB**, and **EJS**, it supports user authentication, session management, and blog operations.
 
+
 ## Table of Contents
 - [Features](#features)
 - [Technologies](#technologies)
