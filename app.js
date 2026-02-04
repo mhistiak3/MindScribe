@@ -12,7 +12,7 @@
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const compression = require('compression')
+const compression = require("compression");
 
 /**
  * custome module
@@ -49,7 +49,7 @@ app.set("view engine", "ejs");
 
 /**
  * compression response body
-**/
+ **/
 app.use(compression());
 
 /**
@@ -88,7 +88,7 @@ app.use(
     cookie: {
       maxAge: Number(SESSION_MAX_AGE),
     },
-  })
+  }),
 );
 
 /**
@@ -107,16 +107,27 @@ app.use(userAuth);
 app.use("/createblog", createBlog);
 app.use("/logout", logout);
 app.use("/readinglist", readingList);
-app.use("/blogs", updateBlog,deleteBlog);
+app.use("/blogs", updateBlog, deleteBlog);
 app.use("/dashboard", dashboard);
 app.use("/settings", settings);
 
 /**
- * Start Server
+ * Connect to Database
  **/
-const server = app.listen(APP_PORT, async () => {
-  console.log(`Server Start On: http://localhost:${APP_PORT}`);
-  await connectDB(MONGO_CONNECTION_URL);
-});
+connectDB(MONGO_CONNECTION_URL);
 
-server.on("close", async () => await disconnectDB());
+/**
+ * Start Server (only for local development)
+ **/
+if (process.env.NODE_ENV !== "production") {
+  const server = app.listen(APP_PORT, () => {
+    console.log(`Server Start On: http://localhost:${APP_PORT}`);
+  });
+
+  server.on("close", async () => await disconnectDB());
+}
+
+/**
+ * Export for Vercel
+ **/
+module.exports = app;
