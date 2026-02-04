@@ -17,7 +17,7 @@ const clientOptions = {
     strict: true,
     deprecationErrors: true,
   },
-  dbName:"MindScribe"
+  dbName: "MindScribe",
 };
 
 /**
@@ -30,7 +30,6 @@ const connectDB = async (connectionURL) => {
     console.log("Connect to MongoDB");
   } catch (error) {
     console.error("Error connecting to mongodb", error.message);
-    throw Error(error.message);
   }
 };
 
@@ -44,7 +43,7 @@ const disconnectDB = async () => {
     console.log("Disconnect from MongoDB");
   } catch (error) {
     console.error("Error disconnecting from mongodb", error.message);
-    throw error
+    throw error;
   }
 };
 

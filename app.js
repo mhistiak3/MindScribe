@@ -9,13 +9,14 @@
 /**
  * node modules
  **/
+const path = require("path");
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const compression = require("compression");
 
 /**
- * custome module
+ * custom module
  **/
 const register = require("./src/routes/registerRoutes");
 const login = require("./src/routes/loginRoutes");
@@ -46,6 +47,7 @@ const app = express();
  *  setting view engine
  **/
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
 /**
  * compression response body
